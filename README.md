@@ -1,2 +1,3 @@
 # leetcode-patterns
-Leetcode questions categorised by patterns
+
+Leetcode questions categorized by patterns

@@ -1,0 +1,23 @@
+{
+  "name": "leetcode-patterns",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:PinkyJie/leetcode-patterns.git",
+  "author": "Wenbo Jie <pinkyjie.gn@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "hasky": "^3.0.2",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
