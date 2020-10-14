@@ -6,4 +6,3 @@ extends:
   - prettier
 parserOptions:
   ecmaVersion: 12
-rules: {}
