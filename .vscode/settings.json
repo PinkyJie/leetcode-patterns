@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["leetcode"],
+  "cSpell.words": ["leetcode", "subarray"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

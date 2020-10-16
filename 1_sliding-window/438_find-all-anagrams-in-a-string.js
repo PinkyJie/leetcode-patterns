@@ -21,7 +21,7 @@
  * Space: O(m)
  *
  * Note: exactly the same as 567_permutation-in-string.js, see detail explanations there, the
- * only difference is for this question we need to record the `windowStart` when there's a
+ * only difference is for this problem we need to record the `windowStart` when there's a
  * full match, and continue the loop to find all full matches.
  *
  * @param {string} string

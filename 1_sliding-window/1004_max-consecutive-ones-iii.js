@@ -21,7 +21,7 @@
  * Space: O(1)
  *
  * Note: exactly the same as 424_longest-repeating-character-replacement.js, see detail
- * explanations there, the only difference is for this question we only care the count of
+ * explanations there, the only difference is for this problem we only care the count of
  * the "1" (no charCountMap required).
  *
  * @param {number[]} array
