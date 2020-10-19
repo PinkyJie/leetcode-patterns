@@ -42,7 +42,7 @@ function sortColors(colorArray) {
        * we have (i >= nextIndexForZero), the number on `nextIndexForZero` is processed
        * in the previous loop already, so it can't be 2.
        */
-      swap(colorArray, i, nextIndexForZero);
+      _swap(colorArray, i, nextIndexForZero);
       nextIndexForZero++;
       i++;
     } else if (colorArray[i] === 2) {
@@ -50,7 +50,7 @@ function sortColors(colorArray) {
        * For 2, swap it to the next available index, then we shouldn't do `i++` because
        * the number on `nextIndexForTwo` is not processed, can be 0 possibly.
        */
-      swap(colorArray, i, nextIndexForTwo);
+      _swap(colorArray, i, nextIndexForTwo);
       nextIndexForTwo--;
     } else {
       /**
@@ -65,7 +65,7 @@ function sortColors(colorArray) {
   return colorArray;
 }
 
-function swap(array, i, j) {
+function _swap(array, i, j) {
   [array[i], array[j]] = [array[j], array[i]];
 }
 

@@ -16,7 +16,7 @@
  * Explanation: There are two unique triplets whose sum is equal to zero.
  *
  * Time: O(n^2) <- O(nlog(n)) + O(n^2)
- * Space: O(1)
+ * Space: O(n) <- merge sort
  *
  * @param {number[]} array
  * @return {number[]}

@@ -18,7 +18,7 @@
  * Explanation: The triplet [-3, 1, 2] has the closest sum to the target.
  *
  * Time: O(n^2) <- O(nlog(n)) + O(n^2)
- * Space: O(1)
+ * Space: O(n) <- merge sort
  *
  * Note: similar approach as 15_3sum.js, check there for detailed explanation.
  *

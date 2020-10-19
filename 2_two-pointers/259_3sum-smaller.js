@@ -18,7 +18,7 @@
  * [-1, 1, 3], [-1, 1, 2], [-1, 2, 3]
  *
  * Time: O(n^2) <- O(nlog(n)) + O(n^2)
- * Space: O(1)
+ * Space: O(n) <- merge sort
  *
  * Note: similar as 15_3sum.js, check there for detailed explanation.
  *
