@@ -48,7 +48,6 @@ function isHappyNumber(number) {
   let slow = number;
   let fast = number;
 
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     slow = _getSumOfAllDigitsSquare(slow);
     fast = _getSumOfAllDigitsSquare(_getSumOfAllDigitsSquare(fast));
