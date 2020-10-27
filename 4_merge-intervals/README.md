@@ -50,11 +50,6 @@ Given two intervals ("a" and "b"), there will be six different ways the two inte
     |_______|   b
 ```
 
-The common strategy is to sort all the intervals by their "start" first, if two intervals are overlapped, we can calculate:
-
-- merged interval: [ Math.min(start1, start2), Math.max(end1, end2) ]
-- intersection: [ Math.max(start1, start2), Math.min(end1, end2) ]
-
 To easily check if the two intervals overlap, we can think about the not overlap condition first, and then do a `not`:
 
 ```javascript
@@ -64,3 +59,10 @@ end1 < start2 || end2 < start1; // scenario 1 and 5
 !(end1 < start2 || end2 < start1); // =>
 end1 >= start2 && end2 >= start1;
 ```
+
+The common strategy is to sort all the intervals by their "start" first, if two intervals are overlapped, we can calculate:
+
+- merged interval: [ Math.min(start1, start2), Math.max(end1, end2) ]
+- intersection: [ Math.max(start1, start2), Math.min(end1, end2) ]
+
+To calculate the overlapped interval count at any time (e.g. calculate the max overlapped interval count for all time), the most common data structure we use is the minimum heap: before inserting a new interval, we remove all intervals from the heap whose end time is smaller than the start time of the interval to be inserted.
