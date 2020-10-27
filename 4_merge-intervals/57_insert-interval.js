@@ -64,7 +64,7 @@ const result1 = insertInterval(
   ],
   [4, 6]
 );
-result1.map((i) => console.log(i)); // [[1,3], [4,7], [8,12]]
+result1.forEach((i) => console.log(i)); // [[1,3], [4,7], [8,12]]
 const result2 = insertInterval(
   [
     [1, 3],
@@ -73,4 +73,4 @@ const result2 = insertInterval(
   ],
   [4, 10]
 );
-result2.map((i) => console.log(i)); // [[1,3], [4,12]]
+result2.forEach((i) => console.log(i)); // [[1,3], [4,12]]

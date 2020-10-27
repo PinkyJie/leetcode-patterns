@@ -54,10 +54,10 @@ const result1 = mergeIntervals([
   [2, 5],
   [7, 9],
 ]);
-result1.map((i) => console.log(i)); // [[1,5], [7,9]]
+result1.forEach((i) => console.log(i)); // [[1,5], [7,9]]
 const result2 = mergeIntervals([
   [6, 7],
   [2, 4],
   [5, 9],
 ]);
-result2.map((i) => console.log(i)); // [[2,4], [5,9]]
+result2.forEach((i) => console.log(i)); // [[2,4], [5,9]]

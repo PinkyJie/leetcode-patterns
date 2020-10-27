@@ -71,7 +71,7 @@ const result1 = intervalIntersection(
     [5, 7],
   ]
 );
-result1.map((i) => console.log(i)); // [[2, 3], [5, 6], [7, 7]]
+result1.forEach((i) => console.log(i)); // [[2, 3], [5, 6], [7, 7]]
 const result2 = intervalIntersection(
   [
     [1, 3],
@@ -80,4 +80,4 @@ const result2 = intervalIntersection(
   ],
   [[5, 10]]
 );
-result2.map((i) => console.log(i)); // [[5, 7], [9, 10]]
+result2.forEach((i) => console.log(i)); // [[5, 7], [9, 10]]
