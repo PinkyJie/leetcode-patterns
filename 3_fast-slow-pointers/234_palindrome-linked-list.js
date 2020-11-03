@@ -1,3 +1,5 @@
+const { ListNode } = require('../_utils');
+
 /**
  *
  * Problem:
@@ -72,11 +74,6 @@ function isPalindromeLinkedList(head) {
   }
 
   return result;
-}
-
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
 }
 
 // Test

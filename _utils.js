@@ -112,4 +112,21 @@ function _swap(array, i, j) {
   [array[i], array[j]] = [array[j], array[i]];
 }
 
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
+function printLinkedList(head) {
+  const listArray = [];
+  let current = head;
+  while (current) {
+    listArray.push(current.val);
+    current = current.next;
+  }
+  console.log(listArray.join(' -> '));
+}
+
 exports.Heap = Heap;
+exports.ListNode = ListNode;
+exports.printLinkedList = printLinkedList;

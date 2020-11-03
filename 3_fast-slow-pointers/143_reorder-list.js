@@ -1,3 +1,5 @@
+const { printLinkedList, ListNode } = require('../_utils');
+
 /**
  *
  * Problem:
@@ -64,11 +66,6 @@ function reorderLinkedList(head) {
   }
 }
 
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
-}
-
 // Test
 const head = new ListNode(2);
 head.next = new ListNode(4);
@@ -77,10 +74,4 @@ head.next.next.next = new ListNode(8);
 head.next.next.next.next = new ListNode(10);
 head.next.next.next.next.next = new ListNode(12);
 reorderLinkedList(head);
-const listArray = [];
-let current = head;
-while (current) {
-  listArray.push(current.val);
-  current = current.next;
-}
-console.log(listArray.join(' -> ')); // 2 -> 12 -> 4 -> 10 -> 6 -> 8
+printLinkedList(head); // 2 -> 12 -> 4 -> 10 -> 6 -> 8

@@ -1,3 +1,5 @@
+const { ListNode } = require('../_utils');
+
 /**
  *
  * Problem:
@@ -32,11 +34,6 @@ function findMiddleOfLinkedList(head) {
     fastPointer = fastPointer.next.next;
   }
   return slowPointer;
-}
-
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
 }
 
 // Test

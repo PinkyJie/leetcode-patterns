@@ -1,3 +1,5 @@
+const { ListNode } = require('../_utils');
+
 /**
  *
  * Problem:
@@ -52,11 +54,6 @@ function findCycleStartInLinkedList(head) {
     }
   }
   return null;
-}
-
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
 }
 
 // Test
