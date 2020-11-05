@@ -1,4 +1,4 @@
-const { ListNode } = require('../_utils');
+const { getLinkedList } = require('../_utils');
 
 /**
  *
@@ -57,12 +57,7 @@ function findCycleStartInLinkedList(head) {
 }
 
 // Test
-const head = new ListNode(1);
-head.next = new ListNode(2);
-head.next.next = new ListNode(3);
-head.next.next.next = new ListNode(4);
-head.next.next.next.next = new ListNode(5);
-head.next.next.next.next.next = new ListNode(6);
+const head = getLinkedList([1, 2, 3, 4, 5, 6]);
 
 head.next.next.next.next.next.next = head.next.next;
 console.log(findCycleStartInLinkedList(head).val); // 3

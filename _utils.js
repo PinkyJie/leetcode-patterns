@@ -127,6 +127,18 @@ function printLinkedList(head) {
   console.log(listArray.join(' -> '));
 }
 
+function getLinkedList(array) {
+  const head = new ListNode(array[0]);
+  let current = head;
+  for (let i = 1; i < array.length; i++) {
+    const node = new ListNode(array[i]);
+    current.next = node;
+    current = node;
+  }
+  return head;
+}
+
 exports.Heap = Heap;
 exports.ListNode = ListNode;
 exports.printLinkedList = printLinkedList;
+exports.getLinkedList = getLinkedList;

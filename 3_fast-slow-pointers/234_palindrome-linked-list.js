@@ -1,4 +1,4 @@
-const { ListNode } = require('../_utils');
+const { getLinkedList } = require('../_utils');
 
 /**
  *
@@ -77,13 +77,8 @@ function isPalindromeLinkedList(head) {
 }
 
 // Test
-const head = new ListNode(2);
-head.next = new ListNode(4);
-head.next.next = new ListNode(6);
-head.next.next.next = new ListNode(6);
-head.next.next.next.next = new ListNode(4);
+const head1 = getLinkedList([2, 4, 6, 6, 4]);
+console.log(isPalindromeLinkedList(head1)); // false
 
-console.log(isPalindromeLinkedList(head)); // true
-
-head.next.next.next.next.next = new ListNode(2);
-console.log(isPalindromeLinkedList(head)); // false
+const head2 = getLinkedList([2, 4, 6, 6, 4, 2]);
+console.log(isPalindromeLinkedList(head2)); // true

@@ -1,4 +1,4 @@
-const { ListNode } = require('../_utils');
+const { getLinkedList } = require('../_utils');
 
 /**
  *
@@ -37,16 +37,11 @@ function findMiddleOfLinkedList(head) {
 }
 
 // Test
-const head = new ListNode(1);
-head.next = new ListNode(2);
-head.next.next = new ListNode(3);
-head.next.next.next = new ListNode(4);
-head.next.next.next.next = new ListNode(5);
+const head1 = getLinkedList([1, 2, 3, 4, 5]);
+console.log(findMiddleOfLinkedList(head1).val); // 3
 
-console.log(findMiddleOfLinkedList(head).val); // 3
+const head2 = getLinkedList([1, 2, 3, 4, 5, 6]);
+console.log(findMiddleOfLinkedList(head2).val); // 4
 
-head.next.next.next.next.next = new ListNode(6);
-console.log(findMiddleOfLinkedList(head).val); // 4
-
-head.next.next.next.next.next.next = new ListNode(7);
-console.log(findMiddleOfLinkedList(head).val); // 4
+const head3 = getLinkedList([1, 2, 3, 4, 5, 6, 7]);
+console.log(findMiddleOfLinkedList(head3).val); // 4

@@ -1,4 +1,4 @@
-const { printLinkedList, ListNode } = require('../_utils');
+const { printLinkedList, getLinkedList } = require('../_utils');
 
 /**
  *
@@ -51,19 +51,11 @@ function _reverse(current, prev) {
 // Test
 
 // loop
-const head1 = new ListNode(2);
-head1.next = new ListNode(4);
-head1.next.next = new ListNode(6);
-head1.next.next.next = new ListNode(8);
-head1.next.next.next.next = new ListNode(10);
+const head1 = getLinkedList([2, 4, 6, 8, 10]);
 const newHead1 = reverseLinkedList(head1);
 printLinkedList(newHead1); // 10 -> 8 -> 6 -> 4 -> 2
 
 // recursion
-const head2 = new ListNode(1);
-head2.next = new ListNode(3);
-head2.next.next = new ListNode(5);
-head2.next.next.next = new ListNode(7);
-head2.next.next.next.next = new ListNode(9);
+const head2 = new getLinkedList([1, 3, 5, 7, 9]);
 const newHead2 = reverseLinkedListRecursively(head2);
 printLinkedList(newHead2); // 9 -> 7 -> 5 -> 3 -> 1

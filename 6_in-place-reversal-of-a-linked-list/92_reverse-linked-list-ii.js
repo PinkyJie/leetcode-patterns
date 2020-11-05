@@ -1,4 +1,4 @@
-const { printLinkedList, ListNode } = require('../_utils');
+const { printLinkedList, getLinkedList } = require('../_utils');
 
 /**
  *
@@ -61,10 +61,6 @@ function reverseSubLinkedList(head, p, q) {
 }
 
 // Test
-const head = new ListNode(1);
-head.next = new ListNode(2);
-head.next.next = new ListNode(3);
-head.next.next.next = new ListNode(4);
-head.next.next.next.next = new ListNode(5);
+const head = getLinkedList([1, 2, 3, 4, 5]);
 const newHead = reverseSubLinkedList(head, 2, 4);
 printLinkedList(newHead); // 1 -> 4 -> 3 -> 2 -> 5
