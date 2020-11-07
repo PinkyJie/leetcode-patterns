@@ -1,4 +1,4 @@
-const { printLinkedList, getLinkedList } = require('../_utils');
+const { printLinkedList, buildLinkedList } = require('../_utils');
 
 /**
  *
@@ -90,10 +90,10 @@ function reverseNodesInKGroup(head, k) {
 }
 
 // Test
-const head1 = getLinkedList([1, 2, 3, 4, 5, 6, 7, 8]);
+const head1 = buildLinkedList([1, 2, 3, 4, 5, 6, 7, 8]);
 const newHead1 = reverseNodesInKGroup(head1, 3);
 printLinkedList(newHead1); // 3 -> 2 -> 1 -> 6 -> 5 -> 4 -> 7 -> 8
 
-const head2 = getLinkedList([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+const head2 = buildLinkedList([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 const newHead2 = reverseNodesInKGroup(head2, 3);
 printLinkedList(newHead2); // 3 -> 2 -> 1 -> 6 -> 5 -> 4 -> 9 -> 8 -> 7

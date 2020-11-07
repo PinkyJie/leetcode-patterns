@@ -1,4 +1,4 @@
-const { getLinkedList, printLinkedList } = require('../_utils');
+const { buildLinkedList, printLinkedList } = require('../_utils');
 
 /**
  *
@@ -75,10 +75,10 @@ function rotateLinkedList(head, k) {
 }
 
 // Test
-const head1 = getLinkedList([1, 2, 3, 4, 5]);
+const head1 = buildLinkedList([1, 2, 3, 4, 5]);
 const newHead1 = rotateLinkedList(head1, 2);
 printLinkedList(newHead1); // 4 -> 5 -> 1 -> 2 -> 3
 
-const head2 = getLinkedList([0, 1, 2]);
+const head2 = buildLinkedList([0, 1, 2]);
 const newHead2 = rotateLinkedList(head2, 4);
 printLinkedList(newHead2); // 2 -> 0 -> 1

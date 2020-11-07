@@ -1,4 +1,4 @@
-const { getLinkedList } = require('../_utils');
+const { buildLinkedList } = require('../_utils');
 
 /**
  *
@@ -37,11 +37,11 @@ function findMiddleOfLinkedList(head) {
 }
 
 // Test
-const head1 = getLinkedList([1, 2, 3, 4, 5]);
+const head1 = buildLinkedList([1, 2, 3, 4, 5]);
 console.log(findMiddleOfLinkedList(head1).val); // 3
 
-const head2 = getLinkedList([1, 2, 3, 4, 5, 6]);
+const head2 = buildLinkedList([1, 2, 3, 4, 5, 6]);
 console.log(findMiddleOfLinkedList(head2).val); // 4
 
-const head3 = getLinkedList([1, 2, 3, 4, 5, 6, 7]);
+const head3 = buildLinkedList([1, 2, 3, 4, 5, 6, 7]);
 console.log(findMiddleOfLinkedList(head3).val); // 4

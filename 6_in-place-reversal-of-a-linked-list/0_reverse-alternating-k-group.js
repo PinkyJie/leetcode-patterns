@@ -1,4 +1,4 @@
-const { getLinkedList, printLinkedList } = require('../_utils');
+const { buildLinkedList, printLinkedList } = require('../_utils');
 
 /**
  *
@@ -51,10 +51,10 @@ function reverseAlternateKNodes(head, k) {
 }
 
 // Test
-const head1 = getLinkedList([1, 2, 3, 4, 5, 6, 7, 8]);
+const head1 = buildLinkedList([1, 2, 3, 4, 5, 6, 7, 8]);
 const newHead1 = reverseAlternateKNodes(head1, 3);
 printLinkedList(newHead1); // 3 -> 2 -> 1 -> 4 -> 5 -> 6 -> 8 -> 7
 
-const head2 = getLinkedList([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+const head2 = buildLinkedList([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 const newHead2 = reverseAlternateKNodes(head2, 2);
 printLinkedList(newHead2); // 2 -> 1 -> 3 -> 4 -> 6 -> 5 -> 7 -> 8 -> 9

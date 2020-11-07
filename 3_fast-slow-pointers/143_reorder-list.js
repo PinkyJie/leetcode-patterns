@@ -1,4 +1,4 @@
-const { printLinkedList, getLinkedList } = require('../_utils');
+const { printLinkedList, buildLinkedList } = require('../_utils');
 
 /**
  *
@@ -67,6 +67,6 @@ function reorderLinkedList(head) {
 }
 
 // Test
-const head = getLinkedList([2, 4, 6, 8, 10, 12]);
+const head = buildLinkedList([2, 4, 6, 8, 10, 12]);
 reorderLinkedList(head);
 printLinkedList(head); // 2 -> 12 -> 4 -> 10 -> 6 -> 8

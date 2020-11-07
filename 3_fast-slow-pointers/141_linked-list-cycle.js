@@ -1,4 +1,4 @@
-const { getLinkedList } = require('../_utils');
+const { buildLinkedList } = require('../_utils');
 
 /**
  *
@@ -50,9 +50,9 @@ function detectCycleInLinkedList(head) {
 }
 
 // Test
-const head1 = getLinkedList([1, 2, 3, 4, 5, 6]);
+const head1 = buildLinkedList([1, 2, 3, 4, 5, 6]);
 head1.next.next.next.next.next.next = head1.next.next.next;
 console.log(detectCycleInLinkedList(head1)); // true
 
-const head2 = getLinkedList([2, 4, 6, 8, 10]);
+const head2 = buildLinkedList([2, 4, 6, 8, 10]);
 console.log(detectCycleInLinkedList(head2)); // false

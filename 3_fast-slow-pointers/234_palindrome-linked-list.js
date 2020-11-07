@@ -1,4 +1,4 @@
-const { getLinkedList } = require('../_utils');
+const { buildLinkedList } = require('../_utils');
 
 /**
  *
@@ -77,8 +77,8 @@ function isPalindromeLinkedList(head) {
 }
 
 // Test
-const head1 = getLinkedList([2, 4, 6, 6, 4]);
+const head1 = buildLinkedList([2, 4, 6, 6, 4]);
 console.log(isPalindromeLinkedList(head1)); // false
 
-const head2 = getLinkedList([2, 4, 6, 6, 4, 2]);
+const head2 = buildLinkedList([2, 4, 6, 6, 4, 2]);
 console.log(isPalindromeLinkedList(head2)); // true

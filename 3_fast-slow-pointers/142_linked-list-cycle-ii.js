@@ -1,4 +1,4 @@
-const { getLinkedList } = require('../_utils');
+const { buildLinkedList } = require('../_utils');
 
 /**
  *
@@ -57,7 +57,7 @@ function findCycleStartInLinkedList(head) {
 }
 
 // Test
-const head = getLinkedList([1, 2, 3, 4, 5, 6]);
+const head = buildLinkedList([1, 2, 3, 4, 5, 6]);
 
 head.next.next.next.next.next.next = head.next.next;
 console.log(findCycleStartInLinkedList(head).val); // 3
