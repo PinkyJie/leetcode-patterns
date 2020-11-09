@@ -138,7 +138,62 @@ function buildLinkedList(array) {
   return head;
 }
 
+function TreeNode(val) {
+  this.val = val;
+  this.left = null;
+  this.right = null;
+}
+
+function buildTreeBFS(array) {
+  const root = new TreeNode(array[0]);
+  const parentQueue = [root];
+  let i = 1;
+  while (i < array.length) {
+    const parent = parentQueue.shift();
+    if (array[i] !== null) {
+      parent.left = new TreeNode(array[i]);
+      parentQueue.push(parent.left);
+    }
+    i++;
+    if (i < array.length && array[i] !== null) {
+      parent.right = new TreeNode(array[i]);
+      parentQueue.push(parent.right);
+    }
+    i++;
+  }
+  return root;
+}
+
+function printTreeBFS(root) {
+  const array = [root.val];
+  const parentQueue = [root];
+  while (parentQueue.length > 0) {
+    const parent = parentQueue.shift();
+    if (parent.left) {
+      array.push(parent.left.val);
+      parentQueue.push(parent.left);
+    } else {
+      array.push(null);
+    }
+    if (parent.right) {
+      array.push(parent.right.val);
+      parentQueue.push(parent.right);
+    } else {
+      array.push(null);
+    }
+  }
+  while (array[array.length - 1] === null) {
+    array.pop();
+  }
+  console.log(array);
+}
+
 exports.Heap = Heap;
+
 exports.ListNode = ListNode;
 exports.printLinkedList = printLinkedList;
 exports.buildLinkedList = buildLinkedList;
+
+exports.TreeNode = TreeNode;
+exports.printTreeBFS = printTreeBFS;
+exports.buildTreeBFS = buildTreeBFS;
