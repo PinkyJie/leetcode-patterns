@@ -34,7 +34,7 @@ function minimumTreeDepth(root) {
     for (let i = 0; i < levelLength; i++) {
       const node = levelNodes.shift();
       /**
-       * The key is to find the 1st left node in the level order traversal,
+       * The key is to find the 1st leaf node in the level order traversal,
        * the height for this leaf node is guaranteed to be the minimal depth.
        * The reason is BFS do the traversal level by level, as long as a leaf
        * node is reached, it is the smallest depth. That's the benefit of BFS,
