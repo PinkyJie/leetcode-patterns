@@ -57,3 +57,4 @@ Note:
 - pre/in/post order here is related to the parent node, e.g. visit parent node first/in the middle/last, for children node visiting order, it's always left to right.
 - if `doVisit` is not pure, e.g. modify some object value reused by the traversal, then after visiting, it should revert the change before traversing the next node, check `addCurrentNodeToAggregation/removeCurrentNodeFromAggregation` above.
 - keep in mind how to use the return value of the recursion to prevent creating unnecessary global variable.
+- sometimes we need to think more about how to use the left/right sub tree aggregation value to calculate the parent node's aggregation value, check questions 124/543 for more examples.
