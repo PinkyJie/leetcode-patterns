@@ -1,13 +1,11 @@
 class Heap {
-  constructor(comparator, itemToId) {
+  constructor(comparator) {
     this._array = [null];
-    this._itemToIndexMap = {};
     this._comparator = comparator;
-    this._itemToId = itemToId;
   }
 
   _debug() {
-    this._array.slice(1).forEach((i) => console.log(i));
+    console.log(this._array.slice(1));
   }
 
   size() {
@@ -46,8 +44,6 @@ class Heap {
     while (this._hasParent(index)) {
       const parentIndex = this._getParentIndex(index);
       if (this._comparator(this._array[parentIndex], this._array[index]) < 0) {
-        this._itemToIndexMap[this._itemToId(this._array[parentIndex])] = index;
-        this._itemToIndexMap[this._itemToId(this._array[index])] = parentIndex;
         _swap(this._array, parentIndex, index);
         index = parentIndex;
       } else {
@@ -76,12 +72,6 @@ class Heap {
           this._array[highPriorityChildIndex]
         ) < 0
       ) {
-        this._itemToIndexMap[
-          this._itemToId(this._array[index])
-        ] = highPriorityChildIndex;
-        this._itemToIndexMap[
-          this._itemToId(this._array[highPriorityChildIndex])
-        ] = index;
         _swap(this._array, index, highPriorityChildIndex);
         index = highPriorityChildIndex;
       } else {
@@ -92,17 +82,22 @@ class Heap {
 
   insert(item) {
     this._array.push(item);
-    this._itemToIndexMap[this._itemToId(item)] = this._array.length - 1;
     this._siftUp(this._array.length - 1);
   }
 
+  removeTop() {
+    const lastItem = this._array.pop();
+    if (this.size() > 0) {
+      this._array[1] = lastItem;
+      this._siftDown(1);
+    }
+  }
+
   remove(item) {
-    const index = this._itemToIndexMap[this._itemToId(item)];
-    delete this._itemToIndexMap[this._itemToId(item)];
+    const index = this._array.indexOf(item); // O(n)
     const lastItem = this._array.pop();
     if (this.size() > 0) {
       this._array[index] = lastItem;
-      this._itemToIndexMap[this._itemToId(lastItem)] = index;
       this._siftDown(index);
     }
   }
