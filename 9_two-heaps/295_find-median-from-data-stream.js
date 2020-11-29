@@ -59,9 +59,9 @@ MedianOfAStream.prototype.addNum = function (num) {
    * smaller part, e.g. smaller than the maxHeap top.
    */
   if (this.smallerPart.size() === 0 || num <= this.smallerPart.peek()) {
-    this.smallerPart.insert(num);
+    this.smallerPart.push(num);
   } else {
-    this.largerPart.insert(num);
+    this.largerPart.push(num);
   }
 
   /**
@@ -74,13 +74,9 @@ MedianOfAStream.prototype.addNum = function (num) {
    * one heap and insert into another heap to re-balance.
    */
   if (this.smallerPart.size() > this.largerPart.size() + 1) {
-    const smallerTop = this.smallerPart.peek();
-    this.smallerPart.removeTop();
-    this.largerPart.insert(smallerTop);
+    this.largerPart.push(this.smallerPart.pop());
   } else if (this.largerPart.size() > this.smallerPart.size()) {
-    const largerTop = this.largerPart.peek();
-    this.largerPart.removeTop();
-    this.smallerPart.insert(largerTop);
+    this.smallerPart.push(this.largerPart.pop());
   }
 };
 

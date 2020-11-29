@@ -55,15 +55,14 @@ function findEmployeeFreeTime(schedules) {
   // O(k)
   for (let i = 0; i < schedules.length; i++) {
     // O(log(k))
-    minHeap.insert([schedules[i][0], i, 0]);
+    minHeap.push([schedules[i][0], i, 0]);
   }
 
   const result = [];
   let lastSchedule = minHeap.peek()[0];
   // O(nlog(k)) <- every interval is being inserted and removed
   while (minHeap.size() > 0) {
-    const currentSchedule = minHeap.peek();
-    minHeap.remove(currentSchedule);
+    const currentSchedule = minHeap.pop();
     /**
      * This comparison won't run for 1st loop, because for 1st loop,
      * `lastSchedule` is the `currentSchedule`, so for 1st loop, it
@@ -86,7 +85,7 @@ function findEmployeeFreeTime(schedules) {
 
     const employeeSchedule = schedules[currentSchedule[1]];
     if (currentSchedule[2] + 1 < employeeSchedule.length) {
-      minHeap.insert([
+      minHeap.push([
         employeeSchedule[currentSchedule[2] + 1],
         currentSchedule[1],
         currentSchedule[2] + 1,

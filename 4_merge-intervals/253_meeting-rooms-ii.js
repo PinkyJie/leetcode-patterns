@@ -49,10 +49,10 @@ function minimumMeetingRooms(meetings) {
   for (let i = 0; i < meetings.length; i++) {
     while (minHeap.size() > 0 && minHeap.peek()[1] <= meetings[i][0]) {
       // O(log(n))
-      minHeap.remove(minHeap.peek());
+      minHeap.pop();
     }
     // O(log(n))
-    minHeap.insert(meetings[i]);
+    minHeap.push(meetings[i]);
     minMeetingRooms = Math.max(minMeetingRooms, minHeap.size());
   }
   return minMeetingRooms;

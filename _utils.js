@@ -40,7 +40,7 @@ class Heap {
     return this._getRightChildIndex(index) < this._array.length;
   }
 
-  _siftUp(index) {
+  _heapifyUp(index) {
     while (this._hasParent(index)) {
       const parentIndex = this._getParentIndex(index);
       if (this._comparator(this._array[parentIndex], this._array[index]) < 0) {
@@ -52,7 +52,7 @@ class Heap {
     }
   }
 
-  _siftDown(index) {
+  _heapifyDown(index) {
     while (this._hasLeftChild(index)) {
       let highPriorityChildIndex = this._getLeftChildIndex(index);
       if (this._hasRightChild(index)) {
@@ -80,25 +80,36 @@ class Heap {
     }
   }
 
-  insert(item) {
+  push(item) {
     this._array.push(item);
-    this._siftUp(this._array.length - 1);
+    this._heapifyUp(this._array.length - 1);
   }
 
-  removeTop() {
-    const lastItem = this._array.pop();
-    if (this.size() > 0) {
-      this._array[1] = lastItem;
-      this._siftDown(1);
-    }
+  pop() {
+    return this._removeIndex(1);
   }
 
   remove(item) {
     const index = this._array.indexOf(item); // O(n)
-    const lastItem = this._array.pop();
-    if (this.size() > 0) {
+    return this._removeIndex(index);
+  }
+
+  _removeIndex(index) {
+    if (index === this._array.length - 1) {
+      return this._array.pop();
+    } else {
+      const lastItem = this._array.pop();
+      const itemToRemove = this._array[index];
       this._array[index] = lastItem;
-      this._siftDown(index);
+      if (
+        this._hasParent(index) &&
+        this._comparator(lastItem, this._array[this._getParentIndex(index)]) > 0
+      ) {
+        this._heapifyUp(index);
+      } else {
+        this._heapifyDown(index);
+      }
+      return itemToRemove;
     }
   }
 }

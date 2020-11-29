@@ -42,13 +42,12 @@ function maximumCPULoad(jobs) {
   // O(n)
   for (let i = 0; i < jobs.length; i++) {
     while (minHeap.size() > 0 && minHeap.peek()[1] < jobs[i][0]) {
-      const top = minHeap.peek();
       // O(log(n))
-      minHeap.remove(top);
+      const top = minHeap.pop();
       currentLoad -= top[2];
     }
     // O(log(n))
-    minHeap.insert(jobs[i]);
+    minHeap.push(jobs[i]);
     currentLoad += jobs[i][2];
     maxLoad = Math.max(maxLoad, currentLoad);
   }
