@@ -83,12 +83,24 @@ function findSubsetsBacktrack(nums) {
 }
 
 function _backtrack(nums, curList, startIndex, result) {
+  // O(n) to copy an array
   result.push(Array.from(curList));
   for (let i = startIndex; i < nums.length; i++) {
     // make decision
     curList.push(nums[i]);
     _backtrack(nums, curList, i + 1, result);
-    // revoke decision (go one level up the tree)
+    /**
+     * The tricky part of understanding this is to think through when is the first
+     * pop() happened, take [1, 5, 3] as an example, when `i + 1 === nums.length`,
+     * (i = 2), `_backtrack()` will return immediately (after pushing to `result`),
+     * then pop() runs. At this moment, `startIndex = 2` and `i = 2`, after pop()
+     * `curList = [1, 5]`, the backtrack() call for `startIndex = 2` will end
+     * (because the for loop ends), the recursion goes back to its parent call
+     * (startIndex = 1, i = 1), then 2nd pop() runs, after that `curList = [1]`
+     * and `startIndex = 1` and `i = 2`, then curList will be [1, 3]. So the first
+     * 2 pop() happen together, the tree traverse from level 3 to level 1.
+     */
+    // revoke decision
     curList.pop();
   }
 }
