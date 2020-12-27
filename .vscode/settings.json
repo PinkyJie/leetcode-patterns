@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["bsts", "heapify", "leetcode", "nums", "subarray"],
+  "cSpell.words": [
+    "bitonic",
+    "bsts",
+    "heapify",
+    "leetcode",
+    "nums",
+    "subarray"
+  ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
