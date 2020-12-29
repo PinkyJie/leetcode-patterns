@@ -20,10 +20,10 @@
  * Space: O(1)
  *
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @return {number[]}
  */
-function findCorruptPair(numbers) {
+function findCorruptPair(nums) {
   /**
    * Similar as 287_find-the-duplicate-number, the difference is after finding
    * the number, we can't stop the loop, we need to make sure all the other numbers
@@ -31,10 +31,10 @@ function findCorruptPair(numbers) {
    * number below.
    *
    */
-  for (let i = 0; i < numbers.length; i++) {
-    while (numbers[i] !== i + 1) {
-      if (numbers[i] !== numbers[numbers[i] - 1]) {
-        _swap(numbers, i, numbers[i] - 1);
+  for (let i = 0; i < nums.length; i++) {
+    while (nums[i] !== i + 1) {
+      if (nums[i] !== nums[nums[i] - 1]) {
+        _swap(nums, i, nums[i] - 1);
       } else {
         break;
       }
@@ -46,9 +46,9 @@ function findCorruptPair(numbers) {
    * the number itself is the duplicate number, and the position itself can derive
    * the missing number;
    */
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] !== i + 1) {
-      return [numbers[i], i + 1];
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== i + 1) {
+      return [nums[i], i + 1];
     }
   }
 }

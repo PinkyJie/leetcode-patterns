@@ -17,11 +17,11 @@
  * Time: O(n)
  * Space: O(1)
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @return {number}
  */
-function findMissingNumber(numbers) {
-  const n = numbers.length;
+function findMissingNumber(nums) {
+  const n = nums.length;
   for (let i = 0; i < n; i++) {
     /**
      * Similar as the problem 0_cyclic-sort, the only difference here:
@@ -31,12 +31,12 @@ function findMissingNumber(numbers) {
      * contains n), or all numbers are at its correct position (the array does
      * not contain n)
      */
-    while (numbers[i] !== i && numbers[i] < n) {
-      _swap(numbers, i, numbers[i]);
+    while (nums[i] !== i && nums[i] < n) {
+      _swap(nums, i, nums[i]);
     }
   }
   for (let i = 0; i < n; i++) {
-    if (numbers[i] === n) {
+    if (nums[i] === n) {
       return i;
     }
   }

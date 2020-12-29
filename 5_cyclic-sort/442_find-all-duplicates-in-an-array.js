@@ -17,11 +17,11 @@
  * Time: O(n)
  * Space: O(1)
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @return {number[]}
  */
-function findAllDuplicateNumbers(numbers) {
-  for (let i = 0; i < numbers.length; i++) {
+function findAllDuplicateNumbers(nums) {
+  for (let i = 0; i < nums.length; i++) {
     /**
      * Similar as 287_find-the-duplicate-number, instead of returning the number
      * directly when the two indices being swapped have the same value, here we
@@ -31,15 +31,15 @@ function findAllDuplicateNumbers(numbers) {
      * times, think about this example: [4,3,2,7,8,2,3,1], the result will be
      * [3,3,2] if we do push in the while loop.
      */
-    while (numbers[i] !== i + 1 && numbers[numbers[i] - 1] !== numbers[i]) {
-      _swap(numbers, i, numbers[i] - 1);
+    while (nums[i] !== i + 1 && nums[nums[i] - 1] !== nums[i]) {
+      _swap(nums, i, nums[i] - 1);
     }
   }
   const result = [];
   // doing this in a separate loop to prevent duplication in the result array
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] !== i + 1) {
-      result.push(numbers[i]);
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== i + 1) {
+      result.push(nums[i]);
     }
   }
   return result;

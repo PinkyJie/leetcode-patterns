@@ -15,11 +15,11 @@
  * Time: O(n)
  * Space: O(1)
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @return {number[]}
  */
-function cyclicSort(numbers) {
-  for (let i = 0; i < numbers.length; i++) {
+function cyclicSort(nums) {
+  for (let i = 0; i < nums.length; i++) {
     /**
      * If index i doesn't hold its correct number `i + 1`, swap it to its
      * correct index `number[i] - 1`, keep swapping until number `i + 1` is
@@ -28,11 +28,11 @@ function cyclicSort(numbers) {
      * Each swap will guarantee that one number is being placed to its correct
      * position, so the sorting can be finished with O(n) time.
      */
-    while (numbers[i] != i + 1) {
-      _swap(numbers, i, numbers[i] - 1);
+    while (nums[i] != i + 1) {
+      _swap(nums, i, nums[i] - 1);
     }
   }
-  return numbers;
+  return nums;
 }
 
 function _swap(array, i, j) {

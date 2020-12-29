@@ -17,21 +17,17 @@
  * Time: O(n + k)
  * Space: O(k) <- Set
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @param {number} k
  * @return {number[]}
  */
-function findFirstKMissingPositiveNumbers(numbers, k) {
-  const n = numbers.length;
+function findFirstKMissingPositiveNumbers(nums, k) {
+  const n = nums.length;
   // Similar as 41_first-smallest-missing-positive for this part
   for (let i = 0; i < n; i++) {
-    while (numbers[i] !== i + 1) {
-      if (
-        numbers[i] >= 1 &&
-        numbers[i] <= n &&
-        numbers[i] !== numbers[numbers[i] - 1]
-      ) {
-        _swap(numbers, i, numbers[i] - 1);
+    while (nums[i] !== i + 1) {
+      if (nums[i] >= 1 && nums[i] <= n && nums[i] !== nums[nums[i] - 1]) {
+        _swap(nums, i, nums[i] - 1);
       } else {
         break;
       }
@@ -44,10 +40,10 @@ function findFirstKMissingPositiveNumbers(numbers, k) {
    * push to the `result` when the length is less than k.
    */
   const extraNumbers = new Set();
-  for (let i = 0; i < numbers.length; i++) {
+  for (let i = 0; i < nums.length; i++) {
     if (result.length < k) {
-      if (numbers[i] !== i + 1) {
-        extraNumbers.add(numbers[i]);
+      if (nums[i] !== i + 1) {
+        extraNumbers.add(nums[i]);
         result.push(i + 1);
       }
     } else {

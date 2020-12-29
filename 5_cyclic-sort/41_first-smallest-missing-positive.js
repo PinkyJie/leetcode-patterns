@@ -17,11 +17,11 @@
  * Time: O(n)
  * Space: O(1)
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @return {number}
  */
-function findSmallestMissingPositive(numbers) {
-  const n = numbers.length;
+function findSmallestMissingPositive(nums) {
+  const n = nums.length;
   for (let i = 0; i < n; i++) {
     /**
      * Similar as 448_find-all-numbers-disappeared-in-an-array, the difference is
@@ -29,20 +29,16 @@ function findSmallestMissingPositive(numbers) {
      * them in the loop), so for the array after swap, the 1st mismatched number will
      * be the smallest positive missing number.
      */
-    while (numbers[i] !== i + 1) {
-      if (
-        numbers[i] !== numbers[numbers[i] - 1] &&
-        numbers[i] >= 1 &&
-        numbers[i] <= n
-      ) {
-        _swap(numbers, i, numbers[i] - 1);
+    while (nums[i] !== i + 1) {
+      if (nums[i] !== nums[nums[i] - 1] && nums[i] >= 1 && nums[i] <= n) {
+        _swap(nums, i, nums[i] - 1);
       } else {
         break;
       }
     }
   }
   for (let i = 0; i < n; i++) {
-    if (numbers[i] !== i + 1) {
+    if (nums[i] !== i + 1) {
       return i + 1;
     }
   }

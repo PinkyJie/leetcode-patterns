@@ -18,21 +18,21 @@
  * Time: O(n)
  * Space: O(1)
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @return {number}
  */
-function findDuplicateNumber(numbers) {
-  for (let i = 0; i < numbers.length; i++) {
-    while (numbers[i] !== i + 1) {
+function findDuplicateNumber(nums) {
+  for (let i = 0; i < nums.length; i++) {
+    while (nums[i] !== i + 1) {
       /**
        * Similar as 448_find-all-numbers-disappeared-in-an-array, during swapping
        * if the target position has the same number as the current index, than that
        * number must be a duplicate number.
        */
-      if (numbers[numbers[i] - 1] === numbers[i]) {
-        return numbers[i];
+      if (nums[nums[i] - 1] === nums[i]) {
+        return nums[i];
       }
-      _swap(numbers, i, numbers[i] - 1);
+      _swap(nums, i, nums[i] - 1);
     }
   }
 }
@@ -60,15 +60,15 @@ function _swap(array, i, j) {
  * Time: O(n)
  * Space: O(1)
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @return {number}
  */
-function findDuplicateNumberWithoutModify(numbers) {
+function findDuplicateNumberWithoutModify(nums) {
   let slowPointer = 0;
   let fastPointer = 0;
   while (true) {
-    slowPointer = numbers[slowPointer];
-    fastPointer = numbers[numbers[fastPointer]];
+    slowPointer = nums[slowPointer];
+    fastPointer = nums[nums[fastPointer]];
     if (slowPointer === fastPointer) {
       break;
     }
@@ -76,21 +76,21 @@ function findDuplicateNumberWithoutModify(numbers) {
   // find the cycle length
   let cycleLength = 1;
   let current = slowPointer;
-  current = numbers[current];
+  current = nums[current];
   while (current !== slowPointer) {
-    current = numbers[current];
+    current = nums[current];
     cycleLength++;
   }
   // find cycle start
   let pointer1 = 0;
   let pointer2 = 0;
   while (cycleLength > 0) {
-    pointer2 = numbers[pointer2];
+    pointer2 = nums[pointer2];
     cycleLength--;
   }
   while (pointer1 !== pointer2) {
-    pointer1 = numbers[pointer1];
-    pointer2 = numbers[pointer2];
+    pointer1 = nums[pointer1];
+    pointer2 = nums[pointer2];
   }
   // pointer itself is the value (except 1st pointer is 0)
   return pointer1;

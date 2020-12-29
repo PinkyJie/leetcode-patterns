@@ -19,24 +19,24 @@
  * Time: O(n)
  * Space: O(1)
  *
- * @param {number[]} numbers
+ * @param {number[]} nums
  * @return {number[]}
  */
-function findAllMissingNumbers(numbers) {
-  for (let i = 0; i < numbers.length; i++) {
+function findAllMissingNumbers(nums) {
+  for (let i = 0; i < nums.length; i++) {
     /**
      * Still similar as 0_cyclic-sort, but because we might have duplicates,
      * so when swapping, the 2 positions might have the same number, if that
      * happens, this index's corresponding number is missing, we should skip
      * that index.
      */
-    while (numbers[i] !== i + 1 && numbers[i] !== numbers[numbers[i] - 1]) {
-      _swap(numbers, i, numbers[i] - 1);
+    while (nums[i] !== i + 1 && nums[i] !== nums[nums[i] - 1]) {
+      _swap(nums, i, nums[i] - 1);
     }
   }
   const result = [];
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] !== i + 1) {
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== i + 1) {
       result.push(i + 1);
     }
   }
