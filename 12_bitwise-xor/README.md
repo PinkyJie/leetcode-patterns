@@ -27,4 +27,11 @@ a ^ b = b ^ a;
 
 ## When to use
 
-XOR is especially useful to handle the "Missing numbers in a range" problems.
+XOR is especially useful to solve the following problems:
+
+- handle the "Missing numbers in a range" problems, because XOR can eliminate the duplicate pair easily.
+- change 1 to 0 and change 0 to 1, because we have `1 ^ 1 = 0` and `0 ^ 1 = 1`.
+
+Note: other useful bitwise operations:
+
+- get rightmost set bit: n & (-n)
