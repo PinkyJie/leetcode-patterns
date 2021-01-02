@@ -73,7 +73,7 @@ const result1 = flipAndInvertImage([
   [1, 1, 1],
   [0, 1, 1],
 ]);
-result1.map((i) => console.log(i));
+result1.forEach((i) => console.log(i));
 // [[0,1,0],[0,0,0],[0,0,1]]
 const result2 = flipAndInvertImage([
   [1, 1, 0, 0],
@@ -81,5 +81,5 @@ const result2 = flipAndInvertImage([
   [0, 1, 1, 1],
   [1, 0, 1, 0],
 ]);
-result2.map((i) => console.log(i));
+result2.forEach((i) => console.log(i));
 // [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]

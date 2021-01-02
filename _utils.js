@@ -1,7 +1,11 @@
 class Heap {
-  constructor(comparator) {
-    this._array = [null];
+  constructor(comparator, array = []) {
+    this._array = [null, ...array];
     this._comparator = comparator;
+    const halfLength = Math.floor(array.length / 2);
+    for (let i = halfLength; i > 0; i--) {
+      this._heapifyDown(i);
+    }
   }
 
   _debug() {
@@ -14,6 +18,10 @@ class Heap {
 
   peek() {
     return this._array[1];
+  }
+
+  toArray() {
+    return this._array.slice(1);
   }
 
   _getParentIndex(index) {
