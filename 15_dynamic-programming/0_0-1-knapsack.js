@@ -90,7 +90,9 @@ function _recursive(weights, profits, capacity, currentIndex) {
 
 /**
  *
- * Solution 2: top-down dynamic programming with memoization.
+ * Solution 2: recursion with memoization, also called top-down dynamic programming
+ * with memoization.
+ *
  * Why we call it "top-down", because when we calculate all the possible combination
  * of `index/capacity`, we starting from the the original `capacity` first, which
  * means `capacity` will be decreased for each recursion, so it's from "top" of the
@@ -193,13 +195,19 @@ function knapsack3(weights, profits, capacity) {
   /**
    * In order to make the above 2 formulas work, we need to make sure the array index
    * is not negative during the loop:
-   *  * for loop variable `i`, we need to set up dp[0][0], cause `i` in the loop needs
-   * to be at least `>= 1`
+   *  * for loop variable `i`, we need to set up dp[0][x] (the whole columns for row 0),
+   * cause `i` in the loop needs to be at least `>= 1`
    *  * for loop variable `j`, we need to make sure that `j >= weights[i]`
+   *
+   * If we only have one item 0, the maximum profit would be: if capacity is allowed
+   * (capacity is larger than item 0's weight), we should always choose to select item 0,
+   * thus we can get the maximum profit (profit of item 0).
    */
-  dp[0][0] = 0; // max profit is 0 because there's no capacity, actually dp[x][0] = 0
+  for (let j = 0; j <= capacity; j++) {
+    dp[0][j] = weights[0] <= j ? profits[0] : 0;
+  }
   for (let i = 1; i < n; i++) {
-    for (let j = 1; j <= capacity; j++) {
+    for (let j = 0; j <= capacity; j++) {
       if (j >= weights[i]) {
         dp[i][j] = Math.max(profits[i] + dp[i - 1][j - weights[i]]);
       } else {
