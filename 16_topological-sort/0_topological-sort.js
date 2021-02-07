@@ -6,6 +6,10 @@
  * vertex V, U comes before V in the ordering. Given a directed graph, find the
  * topological ordering of its vertices.
  *
+ * Related questions:
+ * https://leetcode.com/problems/course-schedule/
+ * https://leetcode.com/problems/course-schedule-ii/
+ *
  * Example 1:
  * Input: Vertices=4, Edges=[3, 2], [3, 0], [2, 0], [2, 1]
  * Output: Following are the two valid topological sorts for the given graph:
