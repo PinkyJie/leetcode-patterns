@@ -33,3 +33,6 @@ Based on the code above, for different problems we need to figure out 2 question
 
 - when to shrink the window
 - how to update the aggregation value
+- when to read the final aggregation value
+  - if the `needShrink()` is a strict condition, e.g. the logic inside runs only the window itself is not valid, then aggregation value should be read after the inner while loop
+  - if the `needShrink()` is a loose condition, e.g. the logic inside runs when the window itself is valid or larger (invalid), then aggregation value should be read inside the inner while loop

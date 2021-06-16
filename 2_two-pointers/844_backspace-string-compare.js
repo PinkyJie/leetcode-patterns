@@ -4,6 +4,7 @@
  * Given two strings containing backspaces (identified by the character ‘#’), check if the
  * two strings are equal. Note that after backspacing an empty text, the text will
  * continue empty (e.g. "a##" => "", "#" => "")
+ * https://leetcode.com/problems/backspace-string-compare/
  *
  * Example 1:
  * Input: str1="xy#z", str2="xzz#"

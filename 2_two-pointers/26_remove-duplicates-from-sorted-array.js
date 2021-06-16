@@ -23,21 +23,27 @@
  * @return {number}
  */
 function removeDuplicatesFromSortedArray(sortedArray) {
-  // pointer 1: the next available index for inserting non-duplicate number
-  let nextAvailableIndex = 1;
-
-  // pointer 2: the looping index run through all the numbers in the array
-  for (let i = 1; i < sortedArray.length; i++) {
-    /**
-     * Only increase `nextAvailableIndex` when the current number is not equal to
-     * the last number in the non-duplicate array (`sortedArray[nextAvailableIndex - 1]`)
-     */
-    if (sortedArray[nextAvailableIndex - 1] !== sortedArray[i]) {
-      sortedArray[nextAvailableIndex] = sortedArray[i];
-      nextAvailableIndex++;
-    }
+  const n = sortedArray.length;
+  if (n <= 1) {
+    return n;
   }
-  return nextAvailableIndex;
+
+  // pointer 1: the index for last non-duplicate number
+  let slow = 0;
+  // pointer 2: the looping index run through all the numbers in the array
+  let fast = 1;
+  while (fast < n) {
+    /**
+     * Only increase `slow` when the current number (`fast`) is not equal to
+     * the last number in the non-duplicate array (`slow`)
+     */
+    if (sortedArray[fast] !== sortedArray[slow]) {
+      slow++;
+      sortedArray[slow] = sortedArray[fast];
+    }
+    fast++;
+  }
+  return slow + 1;
 }
 
 // Test

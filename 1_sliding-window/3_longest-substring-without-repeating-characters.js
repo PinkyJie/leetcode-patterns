@@ -1,7 +1,8 @@
 /**
  *
  * Problem:
- * Given a string, find the length of the longest substring.
+ * Given a string, find the length of the longest substring without repeating characters.
+ * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  *
  * Example 1:
  * Input: String="aabccbb"

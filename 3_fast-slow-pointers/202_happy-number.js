@@ -34,7 +34,7 @@
  * 5^2 + 8^2 = 25 + 64 = 89 (loop)
  *
  *
- * Time: O(log(n)) (???)
+ * Time: O(log(n)) (@TODO no idea why)
  * Space: O(1)
  *
  * Note: similar as cycle detection in linked list, regardless of happy or not happy

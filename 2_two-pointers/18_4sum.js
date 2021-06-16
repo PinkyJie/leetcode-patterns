@@ -4,6 +4,7 @@
  * Given an array of unsorted numbers and a target number, find all unique quadruplets in
  * it, whose sum is equal to the target number. Notice that the solution set must not
  * contain duplicate quadruplets.
+ * https://leetcode.com/problems/4sum/
  *
  * Example 1:
  * Input: [4, 1, 2, -1, 1, -3], target=1
@@ -51,21 +52,27 @@ function quadrupleSumToTarget(array, targetSum) {
 
       // O(n)
       while (left < right) {
-        const sum = array[i] + array[j] + array[left] + array[right];
+        const num1 = array[left];
+        const num2 = array[right];
+        const sum = array[i] + array[j] + num1 + num2;
         if (sum === targetSum) {
           result.push([array[i], array[j], array[left], array[right]]);
           left++;
           right--;
-          while (left < right && array[left] === array[left - 1]) {
+          while (left < right && array[left] === num1) {
             left++;
           }
-          while (left < right && array[right] === array[right + 1]) {
+          while (left < right && array[right] === num2) {
             right--;
           }
         } else if (sum < targetSum) {
-          left++;
+          while (left < right && array[left] === num1) {
+            left++;
+          }
         } else {
-          right--;
+          while (left < right && array[right] === num2) {
+            right--;
+          }
         }
       }
     }

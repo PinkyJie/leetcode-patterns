@@ -36,26 +36,38 @@ function hasLoopInCircularArray(array) {
   if (array.length <= 1) {
     return false;
   }
-  // every number can be the start of the cycle
+  // every number can be the start of the cycle, try to find a cycle below
   for (let i = 0; i < array.length; i++) {
+    // 0 definitely is not the start of the cycle
+    if (array[i] === 0) {
+      continue;
+    }
+
     let slowIndex = i;
     let fastIndex = i;
-    let isForward = array[i] > 0;
 
     while (true) {
-      slowIndex = _getNextIndex(array, slowIndex, isForward);
+      /**
+       * Just the traditional slow/fast pointer approach, the only difference here
+       * is that we need to check if the direction is consistent, e.g. we can not
+       * do "forward" first and then "backward", or vice versa. So here we check the
+       * current direction (`array[i]`) and next direction (`array[slowIndex]` or
+       * `array[fastIndex]`), if they have different sign symbol (product < 0), then
+       * the direction is different.
+       */
+      slowIndex = _getNextIndex(array, slowIndex);
       // direction is not consistent, `i` can't be start of the cycle
-      if (slowIndex === -1) {
+      if (array[slowIndex] * array[i] < 0) {
         break;
       }
-      fastIndex = _getNextIndex(array, fastIndex, isForward);
+      fastIndex = _getNextIndex(array, fastIndex);
       // direction is not consistent, `i` can't be start of the cycle
-      if (fastIndex === -1) {
+      if (array[fastIndex] * array[i] < 0) {
         break;
       }
-      fastIndex = _getNextIndex(array, fastIndex, isForward);
+      fastIndex = _getNextIndex(array, fastIndex);
       // direction is not consistent, `i` can't be start of the cycle
-      if (fastIndex === -1) {
+      if (array[fastIndex] * array[i] < 0) {
         break;
       }
       if (slowIndex === fastIndex) {
@@ -63,7 +75,7 @@ function hasLoopInCircularArray(array) {
          * Even if a cycle is found, we need to make sure the cycle length
          * is larger than one.
          */
-        if (slowIndex === _getNextIndex(array, slowIndex, isForward)) {
+        if (slowIndex === _getNextIndex(array, slowIndex)) {
           break;
         }
         return true;
@@ -74,14 +86,10 @@ function hasLoopInCircularArray(array) {
 }
 
 /**
- * Get the next index based on the `currentIndex`, `isForward` here is to check if
- * the next direction is the same as the current direction, if not, return -1.
+ * Get the next index based on the `currentIndex`.
  */
-function _getNextIndex(array, currentIndex, isForward) {
+function _getNextIndex(array, currentIndex) {
   const step = array[currentIndex];
-  if (isForward !== null && step > 0 !== isForward) {
-    return -1;
-  }
   let nextIndex = currentIndex + step;
   if (nextIndex < 0) {
     nextIndex = (nextIndex % array.length) + array.length;

@@ -56,8 +56,8 @@ function _traverse(node, sum, curPath) {
   for (let i = curPath.length - 1; i >= 0; i--) {
     pathSum += curPath[i];
     if (pathSum === sum) {
-      console.log(curPath, i);
       count++;
+      // can not break here cause there might be node with 0 value
     }
   }
 

@@ -39,7 +39,7 @@ function reverseSubLinkedList(head, p, q) {
   const copyOfNodeP = current;
   // O(q - p)
   while (i <= q) {
-    // why `<`? use real example to help understand
+    // why `<=`? use real example to help understand
     const next = current.next;
     current.next = prev;
     prev = current;

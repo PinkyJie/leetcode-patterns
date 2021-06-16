@@ -62,7 +62,9 @@ function tripletSumToZero(array) {
     let right = array.length - 1;
     // O(n)
     while (left < right) {
-      const sum = array[left] + array[right];
+      const num1 = array[left];
+      const num2 = array[right];
+      const sum = num1 + num2;
       if (sum === targetSum) {
         result.push([array[i], array[left], array[right]]);
         left++;
@@ -73,16 +75,20 @@ function tripletSumToZero(array) {
          * they are the same as the last left/right, we should skip it to prevent
          * duplicate result.
          */
-        while (left < right && array[left - 1] === array[left]) {
+        while (left < right && array[left] === num1) {
           left++;
         }
-        while (right > left && array[right + 1] === array[right]) {
+        while (right > left && array[right] === num2) {
           right--;
         }
       } else if (sum > targetSum) {
-        right--;
+        while (right > left && array[right] === num2) {
+          right--;
+        }
       } else {
-        left++;
+        while (left < right && array[left] === num1) {
+          left++;
+        }
       }
     }
   }

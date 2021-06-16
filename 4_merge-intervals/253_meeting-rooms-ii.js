@@ -3,8 +3,8 @@ const { Heap } = require('../_utils');
 /**
  *
  * Problem:
- * Given a list of intervals representing the start and end time of ‘N’ meetings,
- * required to hold all the meetings.
+ * Given a list of intervals representing the start and end time of ‘N’ meetings, find
+ * the minimum number of rooms required to hold all the meetings.
  * https://leetcode.com/problems/meeting-rooms-ii/
  *
  * Example 1:

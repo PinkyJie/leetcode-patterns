@@ -30,22 +30,22 @@ function reverseLinkedList(head) {
  * Do the reversion in the recursive manner.
  */
 function reverseLinkedListRecursively(head) {
-  return _reverse(head, null);
-}
-
-function _reverse(current, prev) {
-  // set the the stop condition first
-  if (!current) {
-    return prev;
+  // set the stop condition first
+  if (!head || !head.next) {
+    return head;
   }
-
-  const next = current.next;
-  current.next = prev;
+  // reverse from next to the end, return the end
+  const end = reverseLinkedListRecursively(head.next);
   /**
-   * Return the recursive call at last so the deepest call result can be
-   * returned to outer function (e.g. `reverseLinkedListRecursively`)
+   * Use example to illustrate: 1 -> 2 -> 3 -> 4 -> 5 -> null, at first head = 1,
+   * after we do reverse from 2 to null, it will be 5 -> 4 -> 3 -> 2 -> null, but
+   * 1 -> 2 is still there, so `head.next` is still 2, we need to reverse 1 -> 2
+   * to 2 -> 1, so `head.next.next = head`, at the same time we need to do 1 -> null,
+   * so `head.next = null`
    */
-  return _reverse(next, current);
+  head.next.next = head;
+  head.next = null;
+  return end;
 }
 
 // Test

@@ -29,7 +29,7 @@ const { buildTreeBFS } = require('../_utils');
  */
 function diameterOfBinaryTree(root) {
   /**
-   * Each recursion needs to run 2 things, we can either make the recursion
+   * Each recursion needs to return 2 things, we can either make the recursion
    * return an object like this, or use a global variable here out of the
    * recursion.
    */

@@ -4,7 +4,7 @@
 
 For problems involving arrays containing numbers in a given range (e.g. from 1 to n), to find the duplicate numbers or missing numbers in the array.
 
-### Pseudo code
+## Pseudo code
 
 ```javascript
 for (let i = 0; i < numbers.length; i++) {
@@ -18,3 +18,5 @@ for (let i = 0; i < numbers.length; i++) {
 ```
 
 The common strategy is to keep swapping the number on current index to its correct position (index which matches the number) until the correct number (which matches the index) to be swapped to the current index.
+
+Note: for out of bound numbers (e.g. negative or larger than n), we simply skip them and they will be swapped to the end of the array (check [first-smallest-missing-positive](41_first-smallest-missing-positive.js)).

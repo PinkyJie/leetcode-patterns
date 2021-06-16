@@ -17,43 +17,44 @@ function findCycleStartInLinkedList(head) {
   let slowPointer = head;
   let fastPointer = head;
 
+  let hasCycle = false;
   while (fastPointer && fastPointer.next) {
     slowPointer = slowPointer.next;
     fastPointer = fastPointer.next.next;
-
     if (slowPointer === fastPointer) {
-      let cycleLength = 1;
-      slowPointer = slowPointer.next;
-      /**
-       * Find cycle length: keep `fastPointer` at its meeting position, keep moving
-       * `slowPointer` at 1-step speed until it meets `fastPointer` again.
-       */
-      while (slowPointer !== fastPointer) {
-        slowPointer = slowPointer.next;
-        cycleLength++;
-      }
-      /**
-       * How to find the start of the cycle: Think about we put the pointer1 at head,
-       * put the pointer2 at position `cycleLength`, so pointer1 needs to move
-       * `n - cycleLength` to reach the start of the cycle, at the same time, the
-       * distance between pointer2 and the end (one node before cycle start) is also
-       * `n - cycleLength`, so the two pointers will meet at the cycle start after
-       * `n - cycleLength` moves.
-       */
-      let pointer1 = head;
-      let pointer2 = head;
-      while (cycleLength > 0) {
-        pointer2 = pointer2.next;
-        cycleLength--;
-      }
-      while (pointer1 !== pointer2) {
-        pointer1 = pointer1.next;
-        pointer2 = pointer2.next;
-      }
-      return pointer1;
+      hasCycle = true;
+      break;
     }
   }
-  return null;
+  if (!hasCycle) {
+    return null;
+  }
+  /**
+   * Consider the linked list as this:
+   * head   (k1)   start of cycle
+   *    o----------o-------o----
+   *               |  (k2) meet |
+   *                ------------
+   *
+   * slowPointerPath: slow = k1 (between "head" and "start of cycle") + k2 (between
+   * "start of cycle" and "meet point")
+   * fastPointerPath: fast = k1 + k2 + (cycle length - k2) = k1 + k2 + cycle length
+   *
+   * While at the same time, we have fast = 2(k1 + k2), so we can deduce:
+   * cycle length = k1 + k2, so the distance between "meet point" and "start of cycle"
+   * is also k1 (cycle length - k2).
+   *
+   * Then what we need to do is just put pointer1 at "head", put pointer2 at the meet
+   * point (`slow`), they will meet after they both finish k1 steps, which is exactly
+   * the "start of cycle".
+   */
+  let pointer1 = head;
+  let pointer2 = slowPointer;
+  while (pointer1 !== pointer2) {
+    pointer1 = pointer1.next;
+    pointer2 = pointer2.next;
+  }
+  return pointer1;
 }
 
 // Test

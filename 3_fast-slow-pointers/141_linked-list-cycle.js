@@ -7,7 +7,6 @@ const { buildLinkedList } = require('../_utils');
  * LinkedList has a cycle in it or not.
  * https://leetcode.com/problems/linked-list-cycle/
  *
- *
  * Time: O(n)
  * Space: O(1)
  *
