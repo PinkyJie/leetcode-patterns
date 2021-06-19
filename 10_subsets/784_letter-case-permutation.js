@@ -54,10 +54,7 @@ function _backtrack(str, curIndex, curList, result) {
 }
 
 function _isNumber(char) {
-  return (
-    char.charCodeAt(0) >= '0'.charCodeAt(0) &&
-    char.charCodeAt(0) <= '9'.charCodeAt(0)
-  );
+  return char >= '0' && char <= '9';
 }
 
 // Test

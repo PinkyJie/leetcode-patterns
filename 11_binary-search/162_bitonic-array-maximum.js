@@ -32,7 +32,7 @@ function findBitonicArrayMaximum(nums) {
      * the smallest index whose value is larger than its next. For binary search,
      * if the `middle` is larger than its next, then we need to continue search in the
      * left part (i.e. to change `end`), that's why we use
-     * `nums[middle] > nums[middle + 1]` below. Also Remember that the binary search
+     * `nums[middle] > nums[middle + 1]` below. Also remember that the binary search
      * will return `start` as the smallest index which can make the "end change
      * condition" true, that's exactly what we are looking for.
      *

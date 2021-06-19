@@ -132,10 +132,15 @@ function reorganizeString2(str) {
     while (buckets[count].length > 0) {
       const char = buckets[count].shift();
       for (let i = 0; i < count; i++) {
-        // if the position is already occupied by others, it fails
-        if (resultArr[pos]) {
-          return '';
-        }
+        /**
+         * No need to do the following check here because we are processing
+         * the characters from high frequency to low frequency, if the highest
+         * frequency is less than the half size (checked by line 110), then it's
+         * guaranteed that there won't be overlapping.
+         */
+        // if (resultArr[pos]) {
+        //   return '';
+        // }
         resultArr[pos] = char;
         pos += 2;
         // this will only happen once (after 02468, we do 13579)

@@ -29,17 +29,18 @@ function findKClosestElements(nums, k, x) {
    * be consecutive, so to find these k numbers, actually we just need to find the
    * start of these k numbers. So the problem becomes finding a number in a sorted
    * array, it's obvious binary search can be applied somehow, but what should be the
-   * condition? Think about the following scenarios:
+   * change condition? Think about the following scenarios:
    * 1. --- x --- nums[middle] --- --- nums[middle + k] ---
    * 2. --- nums[middle] --- x --- --- nums[middle + k] ---
    * 3. --- nums[middle] --- --- x --- nums[middle + k] ---
    * 4. --- nums[middle] --- --- nums[middle + k] --- x ---
-   * These 4 scenarios cover all the possibility of the relationships between `x`,
+   * These 4 scenarios cover all the possibilities of the relationships between `x`,
    * `nums[middle]` and `nums[middle + k]`, the ideal case is `x` should fall in the
    * middle of this `nums[middle] ~ nums[middle + k]` window. To find this ideal
    * `middle`, how should we move this window?
    * 1. x is less than both of them, and we have
-   * `x - nums[middle] < nums[middle + k ] - x`, we need to move the window left
+   * `x - nums[middle] (negative) < nums[middle + k ] - x`, we need to move the
+   * window left
    * 2. x is in the middle, and we have
    * `x - nums[middle] < nums[middle + k ] - x`, we need to move the window left
    * 3. x is in the middle, and we have
@@ -56,7 +57,7 @@ function findKClosestElements(nums, k, x) {
     const middle = start + Math.floor((end - start) / 2);
     /**
      * Can we return `nums.slice(middle, middle + k)` directly if
-     * `x - nums[middle] <= nums[middle + k] - x`? The answer is NO! Remember this
+     * `x - nums[middle] === nums[middle + k] - x`? The answer is NO! Remember this
      * style of writing binary search will return the smallest index which meets
      * the "end change condition", this is useful if there are duplicate numbers.
      * For this problem specifically, consider example [... 3,3,4,7,7...] with

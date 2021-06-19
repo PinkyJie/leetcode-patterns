@@ -19,7 +19,8 @@ const { Heap } = require('../_utils');
  * left.
  *
  *
- * Time: O((n + k) log(n))
+ * Time: O((m + k) log(m)) <- `m` is the count of non-distinct numbers in the array,
+ * the maximum value of `m` is `n/2` (when all numbers in the original array are distinct)
  * Space: O(n)
  *
  * @param {number[]} nums
@@ -67,7 +68,7 @@ function findLeastNumberOfUniqueIntegersAfterRemovingKElements(nums, k) {
     k -= count;
   }
   /**
-   * `k === 0` means the last pop() number in the heap just use up all the remaining k,
+   * `k === 0` means the last popped number from the heap just use up all the remaining k,
    * so the heap size should be the result.
    */
   if (k === 0) {
@@ -75,8 +76,8 @@ function findLeastNumberOfUniqueIntegersAfterRemovingKElements(nums, k) {
   }
   /**
    * Otherwise k must be `k < 0` cause `k > 0` means we don't have enough elements in
-   * the original array for removing, that will be handled the line 30 above directly.
-   * `k < 0` here means the last pop() number is not completely removed, that's why
+   * the original array for removing, that will be handled the line 31 above directly.
+   * `k < 0` here means the last popped number is not completely removed, that's why
    * we plus 1 here.
    */
   return minHeap.size() + 1;

@@ -37,7 +37,7 @@ var MedianOfAStream = function () {
    * To get the median number, what we are interested is the largest number
    * in the smaller part and the smallest number in the larger part, to get
    * these 2 numbers quickly, Heap is the best structure, we can store the smaller
-   * part in a minHeap and store the larger part in a maxHeap, so their heap
+   * part in a maxHeap and store the larger part in a minHeap, so their heap
    * top should be the 2 numbers we are interested.
    */
   this.smallerPart = new Heap((a, b) => a - b);

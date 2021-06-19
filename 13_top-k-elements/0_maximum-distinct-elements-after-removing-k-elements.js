@@ -4,7 +4,8 @@ const { Heap } = require('../_utils');
  *
  * Problem:
  * Given an array of numbers and a number K, we need to remove K numbers from the
- * array such that we are left with maximum distinct numbers.
+ * array such that we are left with maximum distinct numbers, return the count of
+ * maximum distinct numbers.
  *
  * Example 1:
  * Input: [7, 3, 5, 8, 5, 3, 3], and K=2
@@ -21,8 +22,8 @@ const { Heap } = require('../_utils');
  * numbers.
  *
  *
- * Time: O((n + k) log(n)) <- `m` maximum value is `n` (when all numbers in the original
- * array are distinct)
+ * Time: O((m + k) log(m)) <- `m` is the count of non-distinct numbers in the array,
+ * the maximum value of `m` is `n/2` (when all numbers in the original array are distinct)
  * Space: O(n) <- for `countMap` and heap
  *
  * @param {number[]} nums

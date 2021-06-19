@@ -62,7 +62,7 @@ function findSubsets(nums) {
  *                  |
  *               [1,5,3]
  *
- * Each level of the above tree represents a decision, the tree can be treated
+ * Each edge of the above tree represents a decision, the tree can be treated
  * as a decision tree:
  *  * starting from the empty [], the options we can choose for next is 1, 5, 3
  * which are represented as 3 branches
@@ -97,7 +97,7 @@ function _backtrack(nums, curList, startIndex, result) {
      * `curList = [1, 5]`, the backtrack() call for `startIndex = 2` will end
      * (because the for loop ends), the recursion goes back to its parent call
      * (startIndex = 1, i = 1), then 2nd pop() runs, after that `curList = [1]`
-     * and `startIndex = 1` and `i = 2`, then curList will be [1, 3]. So the first
+     * and `startIndex = 1` and `i = 2`, then `curList` will be [1, 3]. So the first
      * 2 pop() happen together, the tree traverse from level 3 to level 1.
      */
     // revoke decision

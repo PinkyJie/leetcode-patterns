@@ -42,10 +42,10 @@ function findSmallestLetterGreaterThanTarget(letters, key) {
   }
   /**
    * Follow the binary search, the only difference is here we need to return the
-   * use "mod" of `start` here. Remember `start` is always the smallest index which
+   * "mod" of `start` here. Remember `start` is always the smallest index which
    * can satisfy the "end change condition" (e.g. `letters[middle] > key`, the
    * smallest index which is greater than the target, exactly as the question asked),
-   * in this case, the index can equal to `letters.length` (example 2 above), that's
+   * but remember the index can equal to `letters.length` (example 2 above), that's
    * why "mod" here is required.
    */
   return letters[start % letters.length];

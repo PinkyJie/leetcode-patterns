@@ -2,9 +2,9 @@
  *
  * Problem:
  * Given an array of numbers which is sorted in ascending order and also rotated by some
- * arbitrary number, find the minimum number in the array. You can assume that the given
- * array does not have any duplicates.
- * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+ * arbitrary number, find the minimum number in the array. The given array might contain
+ * duplicates.
+ * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
  *
  * Example 1:
  * Input: [3, 3, 7, 3]

@@ -36,7 +36,7 @@ function ceilingOfNumber(arr, key) {
       start = middle + 1;
     }
   }
-  if (start >= 0 && start < arr.length) {
+  if (start < arr.length) {
     return start;
   }
   return -1;

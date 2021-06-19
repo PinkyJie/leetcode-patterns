@@ -140,8 +140,8 @@ class FrequencyStack2 {
     // remember to decrease `maxFreq` if the corresponding array is empty after pop()
     if (this.freqToNumMap[this.maxFreq].length === 0) {
       /**
-       * Why `maxFreq--` works? How to make sure there exists a number array for
-       * `maxFreq--`? Imagine now the max frequency is 5. After popping the number
+       * Why `maxFreq--` works? How to make sure there is a number array for
+       * `maxFreq - 1`? Imagine now the max frequency is 5. After popping the number
        * with frequency 5, the map entry for frequency 5 is empty. It is guaranteed
        * that there should be a number with frequency 4 (the one we just popped,
        * whose frequency will subtract 1 from 5). This is also the maximum possible

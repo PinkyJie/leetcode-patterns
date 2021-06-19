@@ -1,6 +1,16 @@
 class Heap {
   constructor(comparator, array = []) {
     this._array = [null, ...array];
+    /**
+     * `_comparator` here is used to compare `a` and `b` to decide their priority.
+     * If `_comparator` returns a value < 0, it means that `b` has higher priority
+     * than `a`, `b` should be in the parents level of `a`; if `_comparator` returns
+     * a value > 0, it means that `a` has higher priority than `b`, `a` should be in
+     * the parents level of `b`.
+     * So for maxHeap, we should pass `a - b`, cause larger `a` should have higher
+     * priority; for minHeap, we should pass `b - a`, cause smaller `a` should have
+     * higher priority.
+     */
     this._comparator = comparator;
     const halfLength = Math.floor(array.length / 2);
     for (let i = halfLength; i > 0; i--) {
@@ -111,7 +121,7 @@ class Heap {
       this._array[index] = lastItem;
       if (
         this._hasParent(index) &&
-        this._comparator(lastItem, this._array[this._getParentIndex(index)]) > 0
+        this._comparator(this._array[this._getParentIndex(index)], lastItem) < 0
       ) {
         this._heapifyUp(index);
       } else {

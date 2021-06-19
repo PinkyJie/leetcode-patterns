@@ -68,7 +68,7 @@ function _backtrack(str, curIndex, curList, result) {
 }
 
 function _isNumber(char) {
-  return !Number.isNaN(parseInt(char, 10));
+  return char >= '0' && char <= '9';
 }
 
 // Test

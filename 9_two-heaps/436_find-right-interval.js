@@ -36,10 +36,12 @@ function findRightInterval(intervals) {
    * Why using 2 min heaps? For each interval, we need to find another interval
    * with the "smallest" start greater than its end. This requirement indicates
    * at least we need a min heap for interval start. Then what about interval end
-   * heap? If we start with the largest interval end first (e.g. max heap), when
-   * we find the corresponding interval start in another heap (keep pop()), the
-   * smaller ones will be all pop out, it's not easy to match the next interval
-   * end. So we need to start from the smallest interval end, this also requires
+   * heap? The logic here is: for each interval in the end heap, we are trying to
+   * pop() items in the start heap until we find the 1st interval whose start is
+   * larger than the end, that interval will be the the target interval for the end
+   * interval, then we start to process the next end interval, if the next interval
+   * has smaller end, then its targeted interval in the start heap might be pop()
+   * already, so we need to start from the smallest interval end, this also requires
    * a min heap for interval end.
    */
   const minStartHeap = new Heap((a, b) => b.value - a.value);

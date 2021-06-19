@@ -39,9 +39,9 @@ function _backtrack(nums, curResult, startIndex, result) {
      * 1 and get [1], and then process the first 3 and get [1, 3], and then second 3
      * [1, 3, 3] (refer to the tree in 78_subsets), then back to [1, 3], then
      * back to [1], at this moment (`startIndex = 0` and `i = 2`), if we process i = 2
-     * we will get duplicate record [1, 3], so the logic here to skip this one.
+     * we will get duplicate record [1, 3], so the logic here is to skip this one.
      *
-     * So basically when we need to check `i` and `i - 1` when `i > startIndex`, but
+     * So basically we need to check `i` and `i - 1` when `i > startIndex`, but
      * when `i === startIndex`, we still need to process the duplicates, think about
      * [3, 3].
      *

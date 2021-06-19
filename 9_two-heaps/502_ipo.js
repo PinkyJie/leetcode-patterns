@@ -53,10 +53,10 @@ function maximizeCapital(numberOfProjects, initialCapital, profits, capitals) {
    * we have enough capital to buy, so there are 2 factors to consider: capital and
    * profit. To make sure we can always get the max profit project effectively, we
    * need to maintain a max heap for profit.
-   *  * What item to push to the max heap? We
-   * should always push the projects which we have enough capital to buy into the
-   * max heap, so the top item in the max heap will be the optimal project to buy
-   * with our current capital (max profit project with our current capital).
+   *  * What item to push to the max heap? We should always push the projects which
+   * we have enough capital to buy into the max heap, so the top item in the max heap
+   * will be the optimal project to buy with our current capital (max profit project
+   * with our current capital).
    *  * Then how to we get all these projects which we have enough capital? We need
    * to order the projects by the capital from the smallest to the biggest. That's
    * where min heap for capital comes into play.

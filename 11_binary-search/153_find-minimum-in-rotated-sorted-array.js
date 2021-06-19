@@ -30,7 +30,7 @@ function findMinimumInRotatedArray(nums) {
     const middle = start + Math.floor((end - start) / 2);
     if (nums[middle] > nums[end]) {
       /**
-       * [middle, end] is not sorted, so the minimum number must fall in the right.
+       * [middle, end] is not sorted, so the minimum number must fall in the right part.
        * Why `middle + 1` here? Because `nums[middle] > nums[end]`, so `middle` is not
        * possible to be the minimum (at least it's larger than `end`).
        */

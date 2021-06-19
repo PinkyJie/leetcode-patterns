@@ -30,7 +30,7 @@ function findTwoSingleNumbers(nums) {
    *  * first find a non-zero bit in the XOR result
    *  * use all numbers from the array to bitwise and (&) with this bit, obviously there
    * can only be 2 results: 0 or the bit itself, the array will be split in 2 groups,
-   * the 2 numbers we are trying to search falls in each group (because for that exact
+   * the 2 numbers we are trying to search fall in each group (because for that exact
    * bit, one number has 1 and the other has 0)
    *  * XOR all numbers for each group, since in each group all numbers appear twice
    * except the target number, the XOR result for each group is what we are looking for.
