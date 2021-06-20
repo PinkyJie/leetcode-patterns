@@ -49,7 +49,7 @@ function findAlienDictionaryOrder(words) {
   const inDegrees = {};
   /**
    * Initialize both of `graph` and `inDegrees` to make sure all appeared characters
-   * have their own initialization, so that we can easily derive `sources` below like
+   * have their own initializations, so that we can easily derive `sources` below like
    * the original problem.
    * Time: O(EV)
    */

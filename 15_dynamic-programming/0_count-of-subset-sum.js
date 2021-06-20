@@ -19,7 +19,7 @@
  *
  * Note: this problem is very similar as 10_subsets/40_combination-sum-ii, but that problem
  * we need to get all the actual combinations, not the count, so even the sub-problems
- * are the same (the changing variables are the same), but the actual combinations can
+ * are the same (the changing states are the same), but the actual combinations can
  * be different, so that's why for that problem dynamic programming is not appropriate.
  *
  */
@@ -44,7 +44,7 @@ function countOfSubsetSum1(nums, targetSum) {
  * selected and the count of it's skipped.
  *
  * Time: O(2^n) <- each number can either be selected or skipped
- * Space: O(n) <- recursion stack
+ * Space: O(nm) m: targetSum <- recursion stack
  *
  * @param {number[]} nums
  * @param {number} targetSum
@@ -76,9 +76,8 @@ function _recursive(nums, targetSum, currentIndex) {
  * @return {number}
  */
 function countOfSubsetSum2(nums, targetSum) {
-  const memo = new Array(nums.length)
-    .fill(0)
-    .map(() => new Array(targetSum + 1));
+  const n = nums.length;
+  const memo = new Array(n).fill(0).map(() => new Array(targetSum + 1));
   return _recursiveWithMemo(nums, targetSum, 0, memo);
 }
 
@@ -107,7 +106,7 @@ function _recursiveWithMemo(nums, targetSum, currentIndex, memo) {
  *
  * Solution 3: bottom-up dynamic programming.
  * The meaning of `dp[i][j]` here is given the first i numbers in the array,
- * what is the count of all subsets whose sum can be j.
+ * what is the count of all subsets whose sum equals to j.
  *
  * Time: O(mn) m: `targetSum`
  * Space: O(mn) <- for `dp`
@@ -117,34 +116,29 @@ function _recursiveWithMemo(nums, targetSum, currentIndex, memo) {
  * @return {number}
  */
 function countOfSubsetSum3(nums, targetSum) {
-  const dp = new Array(nums.length).fill(0).map(() => new Array(targetSum + 1));
+  const n = nums.length;
+  const dp = new Array(n + 1)
+    .fill(0)
+    .map(() => new Array(targetSum + 1).fill(0));
 
   /**
-   * If the `targetSum = 0`, and we have only one number (index 0), there's one
-   * way to get the target sum, i.e. to skip the number. That's why we have
-   * dp[0][0] = 1 here, actually dp[x][0] = 1.
+   * If the `targetSum = 0`, and we don't have any numbers, there's one way to
+   * get the target sum, that's why we have dp[0][0] = 1 here. For the remaining
+   * columns in the row 0, there's no way to make the sum to be >0, so they should
+   * be 0 (default value initialized above)
    */
   dp[0][0] = 1;
-  /**
-   * Row 0 initialization: when we only have one number (index 0), the only way to
-   * make sure it's equal to the target sum is to make sure the number itself is
-   * equal to the target sum.
-   */
-  for (let j = 1; j <= targetSum; j++) {
-    dp[0][j] = nums[0] === j ? 1 : 0;
-  }
-
-  for (let i = 1; i < nums.length; i++) {
+  for (let i = 1; i <= n; i++) {
     for (let j = 0; j <= targetSum; j++) {
-      if (j >= nums[i]) {
-        dp[i][j] = dp[i - 1][j] + dp[i - 1][j - nums[i]];
+      if (j >= nums[i - 1]) {
+        dp[i][j] = dp[i - 1][j] + dp[i - 1][j - nums[i - 1]];
       } else {
         dp[i][j] = dp[i - 1][j];
       }
     }
   }
 
-  return dp[nums.length - 1][targetSum];
+  return dp[n][targetSum];
 }
 
 /**
@@ -159,16 +153,13 @@ function countOfSubsetSum3(nums, targetSum) {
  * @return {number}
  */
 function countOfSubsetSum4(nums, targetSum) {
-  const dp = new Array(targetSum + 1);
+  const n = nums.length;
+  const dp = new Array(targetSum + 1).fill(0);
 
   dp[0] = 1;
-  for (let i = 1; i < dp.length; i++) {
-    dp[i] = nums[0] === i ? 1 : 0;
-  }
-
-  for (let i = 1; i < nums.length; i++) {
-    for (let j = targetSum; j >= nums[i]; j--) {
-      dp[j] += dp[j - nums[i]];
+  for (let i = 1; i <= n; i++) {
+    for (let j = targetSum; j >= nums[i - 1]; j--) {
+      dp[j] += dp[j - nums[i - 1]];
     }
   }
 

@@ -17,7 +17,7 @@ Leetcode problems categorized by patterns.
 11. [Binary search](./11_binary-search)
 12. [Bitwise XOR](./12_bitwise-xor)
 13. [Top K elements](./13_top-k-elements)
-14. [K way merge](./14_k-way-merge)
+14. [K-way merge](./14_k-way-merge)
 15. [Dynamic programming](./15_dynamic-programming)
 16. [Topological sort](./16_topological-sort)
 17. [Divide and conquer](./17_divide-and-conquer)

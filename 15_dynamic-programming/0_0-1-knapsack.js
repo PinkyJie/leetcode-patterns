@@ -38,7 +38,7 @@ function knapsack1(weights, profits, capacity) {
  *    Weights:  1   2   3
  *    Profits:  1   6   10
  *    Capacity: 3
- * Since the selection order doesn't matter, we can start from A, for all 3 items,
+ * Since the selection order doesn't matter, we can start from A: for all 3 items,
  * we can either select it to the final group or skip it, so this decision tree can
  * be described as a binary tree:
  *                              selected (weights, profits)
@@ -55,8 +55,8 @@ function knapsack1(weights, profits, capacity) {
  *
  *
  * Time: O(2^n) <- for each item we can either select it or skip it, so 2 options
- * Space: O(n) <- for recursive stack, recursion will run n depth (DFS), as
- * `currentIndex` is increased by 1 each time
+ * Space: O(mn) m: capacity <- for recursive stack, recursion will run
+ * for all the possible combinations of n and capacity.
  *
  * @param {number[]} weights
  * @param {number[]} profits
@@ -93,7 +93,7 @@ function _recursive(weights, profits, capacity, currentIndex) {
  * Solution 2: recursion with memoization, also called top-down dynamic programming
  * with memoization.
  *
- * Why we call it "top-down", because when we calculate all the possible combination
+ * Why we call it "top-down", because when we calculate all the possible combinations
  * of `index/capacity`, we starting from the the original `capacity` first, which
  * means `capacity` will be decreased for each recursion, so it's from "top" of the
  * capacity down to the bottom.
@@ -135,7 +135,7 @@ function knapsack2(weights, profits, capacity) {
  * will boost up our performance a lot.
  *
  * Time: O(mn) m: capacity <- cause with `memo` all we need to do is to calculate all
- * the possible combination of `index/capacity`, which will be exactly `mn`.
+ * the possible combinations of `index/capacity`, which will be exactly `mn`.
  * Space: O(mn) <- for `memo` and recursive stack
  *
  *
@@ -161,7 +161,7 @@ function _recursiveWithMemo(weights, profits, capacity, currentIndex, memo) {
 /**
  *
  * Solution 3: bottom-up dynamic programming.
- * Similar as "Solution 2" above, we still want to calculate all the possible combination
+ * Similar as "Solution 2" above, we still want to calculate all the possible combinations
  * of `index/capacity`, but instead of starting from the largest `capacity` value, we
  * start with the smallest one (e.g. `0` for capacity), that is, we do it in the
  * "bottom-up" way.
@@ -178,55 +178,58 @@ function knapsack3(weights, profits, capacity) {
   const n = weights.length;
   /**
    *
-   * The key of bottom-up approach is to analyse the relationship between dp[i] and
+   * The key of bottom-up approach is to find the transition function between dp[i] and
    * dp[i-1], because we need to derive dp[i] from `dp[i-1]`. Think bout the `dp` here
    * as the same thing as the `memo` above, so the meaning of `dp[i][j]` is "with the
    * first i items and the capacity j, the maximum profit is?". So the
-   * `dp[n - 1][capacity]` will be the final result we want.
+   * `dp[n][capacity]` will be the final result we want.
    *
    * With that in mind, how to reach `dp[i][j]` with `dp[i - 1][j]` or `dp[i][j -1]`
    * or `dp[i - 1][j - 1]`, etc. (might be a lot of to consider depending on the
    * problem)? we can think about this form the same point as above:
-   *  * if we select item i: `dp[i][j] = profits[i] + dp[i - 1][j - weights[i]]`
+   *  * if we select item i: `dp[i][j] = profits[i - 1] + dp[i - 1][j - weights[i - 1]]`
    *  * if we skip item i: `dp[i][j] = dp[i - 1][j]`
    * Then the actual dp[i][j] is the max value of the above two.
+   *
+   * Note: why `n + 1` here? This makes it easier to consider the base case, we can
+   * assume dp[0] means we don't have any items, dp[1] means we have the first item. The
+   * base case `dp[0][...] = 0` because without any items, regardless of capacity, our
+   * profit can only be 0. If we do `n` here, dp[0] means we only have the first item,
+   * then we need to compare the weight of the first item with the capacity to calculate
+   * the profit for `dp[0][...]`.
    */
-  const dp = new Array(n).fill(0).map(() => new Array(capacity + 1));
+  const dp = new Array(n + 1)
+    .fill(0)
+    .map(() => new Array(capacity + 1).fill(0));
   /**
    * In order to make the above 2 formulas work, we need to make sure the array index
    * is not negative during the loop:
    *  * for loop variable `i`, we need to set up dp[0][x] (the whole columns for row 0),
    * cause `i` in the loop needs to be at least `>= 1`
-   *  * for loop variable `j`, we need to make sure that `j >= weights[i]`
-   *
-   * If we only have one item 0, the maximum profit would be: if capacity is allowed
-   * (capacity is larger than item 0's weight), we should always choose to select item 0,
-   * thus we can get the maximum profit (profit of item 0).
+   *  * for loop variable `j`, we need to make sure that `j >= weights[i - 1]`
    */
-  for (let j = 0; j <= capacity; j++) {
-    dp[0][j] = weights[0] <= j ? profits[0] : 0;
-  }
-  for (let i = 1; i < n; i++) {
+  // base case is dp[0][...] = 0 which is the default value above.
+  for (let i = 1; i <= n; i++) {
     for (let j = 0; j <= capacity; j++) {
-      if (j >= weights[i]) {
-        dp[i][j] = Math.max(profits[i] + dp[i - 1][j - weights[i]]);
+      if (j >= weights[i - 1]) {
+        dp[i][j] = Math.max(profits[i - 1] + dp[i - 1][j - weights[i - 1]]);
       } else {
         dp[i][j] = dp[i - 1][j];
       }
     }
   }
-  return dp[n - 1][capacity];
+  return dp[n][capacity];
 }
 
 /**
  *
  * Solution 4: bottom-up dynamic programming with reduced space.
- * Similar as "Solution 3" above, but if we look the formulas we get above closely
+ * Similar as "Solution 3" above, but if we look the transition function we get
  * in solution 3, we can easily find out that when we calculate `dp[i][x]`, the only
  * thing we need is `dp[i-1][y]`, if we think of `dp` as a matrix, we can conclude
- * that: in order to populate row i, all we need is the values in row i - 1. Since
- * we are doing this in a bottom-up way, so row i - 1 will always be populated before
- * row i. So if update the value in place at row i - 1 when we populate row i, we don't
+ * that: in order to populate row `i`, all we need is the values in row `i - 1`. Since
+ * we are doing this in a bottom-up way, so row `i - 1` will always be populated before
+ * row i. So if update the value in place at row `i - 1` when we populate row i, we don't
  * need a matrix to store all of these, the dimension can be reduced by 1: we only need
  * an array with `capacity` length.
  *
@@ -243,32 +246,28 @@ function knapsack4(weights, profits, capacity) {
   const dp = new Array(capacity + 1).fill(0);
   /**
    * In order to make sure index is not negative, we need to populate the above
-   * array with the "index 0"(e.g. row 0 in the matrix context). If we only have
-   * one item 0, the maximum profit would be: if capacity is allowed (capacity is
-   * larger than item 0's weight), we should always choose to select item 0, thus
-   * we can get the maximum profit (profit of item 0).
+   * array with the "index 0" (e.g. row 0 in the matrix context). If we don't have
+   * any items, the maximum profit would be 0, which is the default value we initialize
+   * above.
    */
-  for (let i = 0; i < dp.length; i++) {
-    if (weights[0] <= i) {
-      dp[i] = profits[0];
-    }
-  }
-  for (let i = 1; i < n; i++) {
+  for (let i = 1; i <= n; i++) {
     /**
      * Why we staring from the largest capacity first?
      *  * because noticing when we calculate `dp[j]`, we need to use the value
-     * from last round `dp[j - weights[i]]`, since weight will always to positive
+     * from last round `dp[j - weights[i - 1]]`, since weight will always to positive
      * number, which means in oder to calculate `dp[j]`, we need to keep the value
      * from the array whose index is smaller than `j`, thus we do loop for j from
-     * larger index to smaller index.
-     * Why we ignore scenarios when `j < weights[i]`?
-     *  * because when `j > weights[i]`, dp[j]'s value would simply reuse the
+     * larger index to smaller index, so when we calculate `dp[j]`, `dp[j - weights[i - 1]]`
+     * will still be the value from last round.
+     *
+     * Why we ignore scenarios when `j < weights[i - 1]`?
+     *  * because when `j > weights[i - 1]`, dp[j]'s value would simply reuse the
      * last row's value (`dp[i][j] = dp[i - 1][j]` in matrix's context), which
      * means dp[j] will keep its existing value (cause the in-place update
      * strategy), thus we can ignore.
      */
-    for (let j = capacity; j >= weights[i]; j--) {
-      dp[j] = Math.max(dp[j], profits[i] + dp[j - weights[i]]);
+    for (let j = capacity; j >= weights[i - 1]; j--) {
+      dp[j] = Math.max(dp[j], profits[i - 1] + dp[j - weights[i - 1]]);
     }
   }
   return dp[capacity];

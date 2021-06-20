@@ -41,12 +41,12 @@ function minimumSubsetSumDiff1(nums) {
  * Consider we have two subsets S1 and S2, we have `S1 + S2 = totalSum`, if we assume
  * S1's sum is less than S2, we can get `S2 - diff + S2 = totalSum`, what we are trying
  * to find is the minimum diff in the formula: `-diff = totalSum - 2 * S2`. So the basic
- * idea is follow the same idea from "0-1 knapsack" problem, for each number we can
+ * idea is follow the same solution of "0-1 knapsack" problem, for each number we can
  * choose to select or skip, for every choice we calculate the `diff` based on the above
  * formula.
  *
  * Time: O(2^n)
- * Space: O(n)
+ * Space: O(nm) m: totalSum
  *
  * @param {number[]} nums
  * @param {number} totalSum
@@ -126,7 +126,7 @@ function _recursiveWithMemo(nums, totalSum, currentSum, currentIndex, memo) {
  *
  * Solution 3: bottom-up dynamic programming.
  * How to derive the formula from row `i - 1` to row `i`? From the above solutions
- * we know that the changing variables are `currentIndex` and `currentSum`, since
+ * we know that the changing states are `currentIndex` and `currentSum`, since
  * we are trying to make `totalSum - 2 * currentSum` as small as possible, the
  * possible range for `currentSum` here will be 0 ~ totalSum / 2, the best scenario
  * is we can find a subset to make sure `currentSum` can equal to `totalSum / 2`, if
@@ -148,18 +148,14 @@ function minimumSubsetSumDiff3(nums) {
     totalSum += nums[i];
   }
   const maxSum = Math.floor(totalSum / 2);
-  const dp = new Array(n).fill(0).map(() => new Array(maxSum + 1));
-  /**
-   * Initialize the row 0, if we only have one number (index 0), we can only get
-   * the sum if the number itself is equal to the sum.
-   */
-  for (let j = 0; j <= maxSum; j++) {
-    dp[0][j] = j === nums[0];
-  }
-  for (let i = 1; i < n; i++) {
+  const dp = new Array(n + 1)
+    .fill(0)
+    .map(() => new Array(maxSum + 1).fill(false));
+  dp[0][0] = true;
+  for (let i = 1; i <= n; i++) {
     for (let j = 0; j <= maxSum; j++) {
-      if (j >= nums[i]) {
-        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
+      if (j >= nums[i - 1]) {
+        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
       } else {
         dp[i][j] = dp[i - 1][j];
       }
@@ -171,7 +167,7 @@ function minimumSubsetSumDiff3(nums) {
    * going to find the first match.
    */
   for (let j = maxSum; j >= 0; j--) {
-    if (dp[n - 1][j] === true) {
+    if (dp[n][j] === true) {
       return totalSum - 2 * j;
     }
   }
@@ -194,13 +190,11 @@ function minimumSubsetSumDiff4(nums) {
     totalSum += nums[i];
   }
   const maxSum = Math.floor(totalSum / 2);
-  const dp = new Array(maxSum + 1);
-  for (let j = 0; j < dp.length; j++) {
-    dp[j] = nums[0] === j;
-  }
-  for (let i = 1; i < n; i++) {
-    for (let j = maxSum; j >= nums[i]; j--) {
-      dp[j] = dp[j] || dp[j - nums[i]];
+  const dp = new Array(maxSum + 1).fill(false);
+  dp[0] = true;
+  for (let i = 1; i <= n; i++) {
+    for (let j = maxSum; j >= nums[i - 1]; j--) {
+      dp[j] = dp[j] || dp[j - nums[i - 1]];
     }
   }
   for (let j = dp.length - 1; j >= 0; j--) {

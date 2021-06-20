@@ -39,7 +39,7 @@ function findTargetSumWays1(nums, targetSum) {
  * the sum and the currentIndex to make sure it reaches the last number.
  *
  * Time: O(2^n) <- each number has 2 choices
- * Space: O(n) <- recursion stack
+ * Space: O(nm) m: targetSum <- recursion stack
  *
  * @param {number[]} nums
  * @param {number} targetSum
@@ -278,7 +278,8 @@ function findTargetSumWays4(nums, targetSum) {
  */
 function findTargetSumWays5(nums, targetSum) {
   let totalSum = 0;
-  for (let i = 0; i < nums.length; i++) {
+  const n = nums.length;
+  for (let i = 0; i < n; i++) {
     totalSum += nums[i];
   }
 
@@ -287,26 +288,12 @@ function findTargetSumWays5(nums, targetSum) {
   }
 
   const sum = (totalSum + targetSum) / 2;
-  const dp = new Array(sum + 1);
-  /**
-   * A bit counter-intuitive here: remember we are returning the ways to choices
-   * to get the sum. If `sum = 0`, whatever `nums[0]` is, we always have a way
-   * to make sure its sum is 0, e.g. skip the number and then the sum is 0. But
-   * another edge case to consider is: if the `nums[0] = 0` also, then we have
-   * 2 ways to get 0 sum, either select it or skip it, in both scenarios the sum
-   * is 0, that's why we return 2 for that case.
-   */
-  for (let j = 0; j <= sum; j++) {
-    if (j === 0) {
-      dp[0] = nums[0] === 0 ? 2 : 1;
-    } else {
-      dp[j] = nums[0] === j ? 1 : 0;
-    }
-  }
+  const dp = new Array(sum + 1).fill(0);
+  dp[0] = 1;
 
-  for (let i = 1; i < nums.length; i++) {
-    for (let j = sum; j >= nums[i]; j--) {
-      dp[j] = dp[j] + dp[j - nums[i]];
+  for (let i = 1; i <= nums.length; i++) {
+    for (let j = sum; j >= nums[i - 1]; j--) {
+      dp[j] = dp[j] + dp[j - nums[i - 1]];
     }
   }
   return dp[sum];

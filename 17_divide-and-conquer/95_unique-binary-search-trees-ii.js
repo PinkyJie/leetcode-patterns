@@ -38,7 +38,7 @@ function findUniqueBST(n) {
   /**
    * Why don't we use a `memo` here to memoize the sub problems? (There will
    * definitely be duplicate sub problems when split a number range.) The reason
-   * is that che memoized result will be a node object which has left and right sub
+   * is that the memoized result will be a node object which has left and right sub
    * tree, we need to traverse the tree to clone each node which will also cost
    * O(n).
    */

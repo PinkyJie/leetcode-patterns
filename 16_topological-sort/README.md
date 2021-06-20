@@ -1,10 +1,8 @@
 # Topological sort
 
-Topological Sort is used to find a linear ordering of elements that have dependencies on each other. For example, if event B is dependent on event A, A comes before B in topological ordering.
-
 ## When to use
 
-When the problem is asking for the order of dependent vertices in a directed graph, or the problem itself can be represented as directed graph.
+Topological Sort is used to find a linear ordering of elements that have dependencies on each other. For example, if event B is dependent on event A, A comes before B in topological ordering. When the problem is asking for the order of dependent vertices in a directed graph, or the problem itself can be represented as directed graph.
 
 ## Pseudo code
 
@@ -26,7 +24,7 @@ for (let i = 0; i < inDegrees.length; i++) {
   }
 }
 
-// Step 3: keep removing the 0 in degree vertices and update in degrees
+// Step 3: keep removing the 0 in-degree vertices and update inDegrees
 const result = [];
 while (sources.length > 0) {
   const source = sources.shift();

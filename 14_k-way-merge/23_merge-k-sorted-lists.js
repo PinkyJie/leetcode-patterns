@@ -43,7 +43,7 @@ function mergeKSortedLists(lists) {
   }
   // corner case, e.g. `lists` itself is empty, or all the sub lists are empty
   if (minHeap.size() === 0) {
-    return null;
+    return [];
   }
   const newHeadNode = minHeap.peek();
   let preNode = null;

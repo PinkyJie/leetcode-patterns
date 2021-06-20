@@ -21,4 +21,4 @@ From the above code we can see, things need to be considered when using this app
 - how should we split the collection? (`splitIndices`)
 - how to combine the `leftResult` and `rightResult` (`combineResult`)
 
-Note: consider to use memoization sometimes cause different splitting method can generate duplicate sub problems.
+Note: consider to use memoization sometimes cause different splitting methods can generate duplicate sub problems.

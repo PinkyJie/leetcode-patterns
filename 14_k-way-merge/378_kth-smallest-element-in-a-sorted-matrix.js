@@ -96,7 +96,7 @@ function kthSmallestNumberInSortedMatrixWithBinarySearch(matrix, k) {
     const middle = start + Math.floor((end - start) / 2);
     const count = countOfNumbersLessOrEqualThan(matrix, middle);
     /**
-     * Remember the binary search will make sure the smallest index which meet
+     * Remember the binary search will make sure the smallest index which meets
      * the "end change" condition is returned. So for this case, the returned
      * `start` will be the smallest number to make sure `count(num) >= k`.
      *

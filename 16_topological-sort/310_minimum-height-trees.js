@@ -42,7 +42,7 @@
  */
 function findMinHeightTrees(vertices, edges) {
   /**
-   * From the above example illustration, we can clear see the minimum height trees are
+   * From the above example illustration, we can clearly see the minimum height trees are
    * always rooted as the nodes which have larger degrees, which means leaf nodes whose
    * degree is 0 can't be root of MHT. With this in mind, what we can do is starting from
    * the leaf nodes as `sources`, keep removing them and update the `degrees` of other

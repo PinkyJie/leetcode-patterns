@@ -46,7 +46,7 @@ function canPartitionToEqualSum1(nums) {
 /**
  *
  * Time: O(2^n) <- for each number, we can choose to select or skip, 2 options.
- * Space: O(n) <- for recursion stack
+ * Space: O(nm) m: targetSum <- for recursion stack
  *
  * @param {*} nums
  * @param {*} targetSum
@@ -135,8 +135,9 @@ function _recursiveWithMemo(nums, targetSum, currentIndex, memo) {
  * @return {boolean}
  */
 function canPartitionToEqualSum3(nums) {
+  const n = nums.length;
   let totalSum = 0;
-  for (let i = 0; i < nums.length; i++) {
+  for (let i = 0; i < n; i++) {
     totalSum += nums[i];
   }
   // return false directly if the total sum is not even
@@ -144,25 +145,15 @@ function canPartitionToEqualSum3(nums) {
     return false;
   }
   const targetSum = totalSum / 2;
-  const dp = new Array(nums.length).fill(0).map(() => new Array(targetSum + 1));
+  const dp = new Array(n + 1)
+    .fill(0)
+    .map(() => new Array(targetSum + 1).fill(false));
 
-  /**
-   * Initialize row 0: if we only have 1 number (index 0), if it's equal to the target
-   * sum, then the result is true, otherwise the result is false obviously cause there's
-   * no other numbers to fill the target sum.
-   */
-  for (let j = 0; j <= targetSum; j++) {
-    dp[0][j] = nums[0] === j;
-  }
-  // early return: if we find a `targetSum` column equal to true, return directly
-  if (dp[0][targetSum]) {
-    return true;
-  }
-
-  for (let i = 1; i < nums.length; i++) {
+  dp[0][0] = true;
+  for (let i = 1; i <= n; i++) {
     for (let j = 0; j <= targetSum; j++) {
-      if (j >= nums[i]) {
-        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
+      if (j >= nums[i - 1]) {
+        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
       } else {
         dp[i][j] = dp[i - 1][j];
       }
@@ -172,7 +163,7 @@ function canPartitionToEqualSum3(nums) {
       return true;
     }
   }
-  return dp[nums.length - 1][targetSum];
+  return dp[n][targetSum];
 }
 
 /**
@@ -186,8 +177,9 @@ function canPartitionToEqualSum3(nums) {
  * @return {boolean}
  */
 function canPartitionToEqualSum4(nums) {
+  const n = nums.length;
   let totalSum = 0;
-  for (let i = 0; i < nums.length; i++) {
+  for (let i = 0; i < n; i++) {
     totalSum += nums[i];
   }
   // return false directly if the total sum is not even
@@ -195,19 +187,12 @@ function canPartitionToEqualSum4(nums) {
     return false;
   }
   const targetSum = totalSum / 2;
-  const dp = new Array(targetSum + 1);
+  const dp = new Array(targetSum + 1).fill(false);
 
-  for (let i = 0; i < dp.length; i++) {
-    dp[i] = nums[0] === i;
-  }
-  // early return: if we find a `targetSum` column equal to true, return directly
-  if (dp[targetSum]) {
-    return true;
-  }
-
-  for (let i = 1; i < nums.length; i++) {
-    for (let j = targetSum; j >= nums[i]; j--) {
-      dp[j] = dp[j] || dp[j - nums[i]];
+  dp[0] = true;
+  for (let i = 1; i <= n; i++) {
+    for (let j = targetSum; j >= nums[i - 1]; j--) {
+      dp[j] = dp[j] || dp[j - nums[i - 1]];
     }
     // early return: if we find a `targetSum` column equal to true, return directly
     if (dp[targetSum]) {

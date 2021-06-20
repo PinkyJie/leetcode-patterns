@@ -41,12 +41,12 @@ function topologicalSort(vertices, edges) {
    *                 |        |
    *                  --> 0 <--
    * To find the topological order for this graph, obviously we should start with
-   * vertex whose in degree is 0, these kind of the vertices must be before others.
+   * vertex whose in degree is 0, these kind of the vertices must come before others.
    *
    * Step 1: Build a graph with the input `vertices` and `edges`, and then find the
    * in degrees for all the vertices.
    *
-   * So we can start from these vertices with 0 in degree, how to find next? We can
+   * So we start from these vertices with 0 in degree, but how to find next? We can
    * remove these vertices from the graph, for example, if we remove 3 in the above
    * graph, it will become:
    *                          2 ----> 1
