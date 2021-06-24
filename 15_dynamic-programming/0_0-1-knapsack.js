@@ -212,7 +212,10 @@ function knapsack3(weights, profits, capacity) {
   for (let i = 1; i <= n; i++) {
     for (let j = 0; j <= capacity; j++) {
       if (j >= weights[i - 1]) {
-        dp[i][j] = Math.max(profits[i - 1] + dp[i - 1][j - weights[i - 1]]);
+        dp[i][j] = Math.max(
+          dp[i - 1][j],
+          profits[i - 1] + dp[i - 1][j - weights[i - 1]]
+        );
       } else {
         dp[i][j] = dp[i - 1][j];
       }

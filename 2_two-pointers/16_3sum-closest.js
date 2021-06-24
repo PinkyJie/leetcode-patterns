@@ -43,6 +43,11 @@ function tripletSumCloseToTarget(array, targetSum) {
       if (sum === targetSum) {
         return targetSum;
       }
+      if (sum < targetSum) {
+        left++;
+      } else {
+        right--;
+      }
       if (
         // 1st condition: find the smallest diff
         Math.abs(targetSum - sum) < Math.abs(targetSum - minSum) ||
@@ -51,11 +56,6 @@ function tripletSumCloseToTarget(array, targetSum) {
           sum < targetSum)
       ) {
         minSum = sum;
-      }
-      if (sum < targetSum) {
-        left++;
-      } else {
-        right--;
       }
     }
   }

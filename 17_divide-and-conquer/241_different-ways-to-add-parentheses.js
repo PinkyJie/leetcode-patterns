@@ -20,8 +20,10 @@
  *
  *
  * Time: O(n 2^n) n: the count of the operators
- * f(1) -> split by the 1st operator
- * f(n) = f(1)+f(2)+..+f(n-1)+f(n-1)+f(n-2)..+f(1) = 2*(f(1)+f(2)+...+f(n-1))
+ * f(k) -> complexity of calculate expression with k operators
+ *        left    right
+ * f(n) = (f(1) + f(n - 1)) + (f(2) + f(n - 2)) + ... + (f(n - 1) + f(1))
+ *      = 2*(f(1)+f(2)+...+f(n-1))
  * => f(n+1) = 2*(f(1)+f(2)+..+f(n))
  *           = 2*(f(1)+f(2)+...+f(n-1)) + 2f(n)
  *           = f(n)+2f(n)

@@ -68,6 +68,7 @@ function _rightView(node, depth, values) {
   if (!node) {
     return;
   }
+  console.log(node.val);
   /**
    * When to put the node value to the result array? If the result array's length
    * is equal to the current depth, that means for this depth (0 based), the node

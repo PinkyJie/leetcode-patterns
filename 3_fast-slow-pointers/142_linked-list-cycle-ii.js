@@ -38,7 +38,7 @@ function findCycleStartInLinkedList(head) {
    *
    * slowPointerPath: slow = k1 (between "head" and "start of cycle") + k2 (between
    * "start of cycle" and "meet point")
-   * fastPointerPath: fast = k1 + k2 + (cycle length - k2) = k1 + k2 + cycle length
+   * fastPointerPath: fast = k1 + 2 * k2 + (cycle length - k2) = k1 + k2 + cycle length
    *
    * While at the same time, we have fast = 2(k1 + k2), so we can deduce:
    * cycle length = k1 + k2, so the distance between "meet point" and "start of cycle"

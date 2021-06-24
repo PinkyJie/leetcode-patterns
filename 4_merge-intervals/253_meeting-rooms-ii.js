@@ -42,8 +42,7 @@ function minimumMeetingRooms(meetings) {
   // O(nlog(n))
   meetings.sort((a, b) => a[0] - b[0]);
   const smallEndPriorityComparator = (a, b) => b[1] - a[1];
-  const itemToId = (a) => `[${a[0]},${a[1]}]`;
-  const minHeap = new Heap(smallEndPriorityComparator, itemToId);
+  const minHeap = new Heap(smallEndPriorityComparator);
   let minMeetingRooms = 1;
   // O(n)
   for (let i = 0; i < meetings.length; i++) {

@@ -64,8 +64,10 @@ function _findUniqueBSTBetween(start, end) {
      * Given `rootValue` as the root node, how many possible sub trees it can get.
      * This loop will try to use the number range from `start` to `end`, use each
      * number as root node, and try to split it to 2 parts, obviously,
-     *  * range [start, rootValue - 1] will fall under left sub tree
-     *  * range [rootValue + 1, end] will fall under right sub tree
+     *  * range [start, rootValue - 1] will fall under left sub tree, `start` might
+     * be larger than `rootValue - 1` (first loop), but it doesn't matter
+     *  * range [rootValue + 1, end] will fall under right sub tree, `rootValue + 1`
+     * might be larger than `end` (last loop), but it doesn't matter
      *
      * For each split, we can get all the possible sub tree roots, the sub tree
      * roots will be root node's `left` and `right`.

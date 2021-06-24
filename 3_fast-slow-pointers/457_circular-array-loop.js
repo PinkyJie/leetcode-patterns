@@ -73,7 +73,7 @@ function hasLoopInCircularArray(array) {
       if (slowIndex === fastIndex) {
         /**
          * Even if a cycle is found, we need to make sure the cycle length
-         * is larger than one.
+         * is larger than one, consider this example [-1, 2]
          */
         if (slowIndex === _getNextIndex(array, slowIndex)) {
           break;

@@ -17,8 +17,8 @@
  *
  * Note: this problem is similar as 347_top-k-frequent-elements, we can treat this
  * problem as "top n frequent elements" and use the same strategy to solve it. However,
- * we will try to use a different solution here to demonstrate how "Bucket sort" is used
- * when solving problems related to "frequency".
+ * we will try to use a different solution here to demonstrate how "counting sort" is
+ * used when solving problems related to "frequency".
  *
  * Time: O(n)
  * Space: O(n)

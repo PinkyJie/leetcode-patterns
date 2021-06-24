@@ -7,7 +7,7 @@ const { Heap } = require('../_utils');
  * of each employee. Our goal is to find out if there is a free interval that is
  * common to all employees. You can assume that each list of employee working hours
  * is sorted on the start time.
- * https://leetcode.com/problems/employee-free-time/
+ * https://leetcode.com/problems/employee-free-time/ (subscription)
  *
  * Example 1:
  * Input: Employee Working Hours=[[[1,3], [5,6]], [[2,3], [6,8]]]
@@ -50,8 +50,7 @@ function findEmployeeFreeTime(schedules) {
    * start intervals.
    */
   const smallStartPriorityComparator = (a, b) => b[0][0] - a[0][0];
-  const itemToId = (a) => `[[${a[0][0]},${a[0][1]}],${a[1]},${a[2]}]`;
-  const minHeap = new Heap(smallStartPriorityComparator, itemToId);
+  const minHeap = new Heap(smallStartPriorityComparator);
   // O(k)
   for (let i = 0; i < schedules.length; i++) {
     // O(log(k))
@@ -59,27 +58,25 @@ function findEmployeeFreeTime(schedules) {
   }
 
   const result = [];
-  let lastSchedule = minHeap.peek()[0];
+  let lastSchedule = null;
   // O(nlog(k)) <- every interval is being inserted and removed
   while (minHeap.size() > 0) {
     const currentSchedule = minHeap.pop();
-    /**
-     * This comparison won't run for 1st loop, because for 1st loop,
-     * `lastSchedule` is the `currentSchedule`, so for 1st loop, it
-     * will insert another interval into the heap directly, the comparison
-     * starts from the 2nd loop.
-     */
-    if (currentSchedule[0][0] > lastSchedule[1]) {
-      // no overlap, record the free time
-      result.push([lastSchedule[1], currentSchedule[0][0]]);
-    }
-    /**
-     * Regardless of overlap or not, always use the interval with larger
-     * end as the `lastInterval`, because we need to use `lastInterval` to
-     * compare with the next smaller start interval to get the possible free
-     * time.
-     */
-    if (currentSchedule[0][1] > lastSchedule[1]) {
+    if (lastSchedule) {
+      if (currentSchedule[0][0] > lastSchedule[1]) {
+        // no overlap, record the free time
+        result.push([lastSchedule[1], currentSchedule[0][0]]);
+      }
+      /**
+       * Regardless of overlap or not, always use the interval with larger
+       * end as the `lastInterval`, because we need to use `lastInterval` to
+       * compare with the next smaller start interval to get the possible free
+       * time.
+       */
+      if (currentSchedule[0][1] > lastSchedule[1]) {
+        lastSchedule = currentSchedule[0];
+      }
+    } else {
       lastSchedule = currentSchedule[0];
     }
 

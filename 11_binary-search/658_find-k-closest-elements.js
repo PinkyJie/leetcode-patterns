@@ -3,7 +3,8 @@
  * Problem:
  * Given a sorted number array and two integers K and X, find K closest numbers to
  * X in the array. Return the numbers in the sorted order. X is not necessarily
- * present in the array. The result should also be sorted in ascending order.
+ * present in the array. The result should also be sorted in ascending order. If the
+ * two numbers has the same differences with X, choose the one with smaller index.
  * https://leetcode.com/problems/find-k-closest-elements/
  *
  * Example 1:

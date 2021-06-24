@@ -60,6 +60,7 @@ function findKthSmallestNumberWithHeap(nums, k) {
  * quick sort variant, every time we only handle partition for half of the array, so
  * the total partition complexity will be O(n), because:
  *    1/2 + 1/4 + 1/8 + 1/16 + ... + 1/2^n = 1
+ * https://en.wikipedia.org/wiki/1/2_%2B_1/4_%2B_1/8_%2B_1/16_%2B_%E2%8B%AF
  * Space: O(n) <- worse case, for recursion stack
  *
  * @param {number[]} nums

@@ -51,10 +51,6 @@ function _backtrack(str, curIndex, curList, result) {
    * it, so basically for each position, we have 2 choices, so roughly it's O(2^n).
    */
   for (let i = 0; i < choices.length; i++) {
-    if (i > 0 && _isNumber(curList[curList.length - 1])) {
-      break;
-    }
-
     curList.push(choices[i]);
     if (i === 0) {
       // char

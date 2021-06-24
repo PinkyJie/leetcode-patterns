@@ -35,8 +35,7 @@ function maximumCPULoad(jobs) {
   // O(nlog(n))
   jobs.sort((a, b) => a[0] - b[0]);
   const smallEndPriorityComparator = (a, b) => b[1] - a[1];
-  const itemToId = (a) => `[${a[0]},${a[1]},${a[2]}]`;
-  const minHeap = new Heap(smallEndPriorityComparator, itemToId);
+  const minHeap = new Heap(smallEndPriorityComparator);
   let maxLoad = 0;
   let currentLoad = 0;
   // O(n)

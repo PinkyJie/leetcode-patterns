@@ -42,26 +42,29 @@ function findAllAnagramsInString(string, pattern) {
   let matchedCharCount = 0;
   const resultIndices = [];
 
+  const charCountMapInWindow = {};
   while (windowEnd < string.length) {
     const endChar = string[windowEnd];
     if (endChar in charCountMapInPattern) {
-      charCountMapInPattern[endChar]--;
-      if (charCountMapInPattern[endChar] === 0) {
+      charCountMapInWindow[endChar] = (charCountMapInWindow[endChar] || 0) + 1;
+      if (charCountMapInWindow[endChar] === charCountMapInPattern[endChar]) {
         matchedCharCount++;
-        if (matchedCharCount === expectedMatchCount) {
-          resultIndices.push(windowStart);
-        }
       }
     }
     windowEnd++;
 
     if (windowEnd >= pattern.length) {
+      if (matchedCharCount === expectedMatchCount) {
+        resultIndices.push(windowStart);
+      }
       const startChar = string[windowStart];
       if (startChar in charCountMapInPattern) {
-        if (charCountMapInPattern[startChar] === 0) {
+        if (
+          charCountMapInWindow[startChar] === charCountMapInPattern[startChar]
+        ) {
           matchedCharCount--;
         }
-        charCountMapInPattern[startChar]++;
+        charCountMapInWindow[startChar]--;
       }
       windowStart++;
     }
