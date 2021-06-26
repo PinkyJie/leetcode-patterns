@@ -23,5 +23,5 @@ while (fastPointer && fastPointer.next) {
 ## Common usage for two pointers in the linked list
 
 - fast(2-step) and slow(1-step) pointers, move them at the 2-step and 1-step speed, if they can meet each other, then a cycle exists in the linked list.
-- pointer1 (at head) and pointer2 (at K, K is the length of the cycle), move pointer1 and pointer2 at the same speed (1-step), their meeting point is the start node of the cycle. (Why? check [142_linked-list-cycle-ii](./142_linked-list-cycle-ii.js))
+- pointer1 (at head) and pointer2 (at the meeting point described above), move pointer1 and pointer2 at the same speed (1-step), their meeting point is the start node of the cycle. (Why? check [142_linked-list-cycle-ii](./142_linked-list-cycle-ii.js))
 - fast(2-step) and slow(1-step) pointers, when fast pointer reaches the end of the linked list, slow pointer is at the middle position of the linked list.

@@ -34,4 +34,4 @@ XOR is especially useful to solve the following problems:
 
 Note: other useful bitwise operations:
 
-- get rightmost set bit: n & (-n), e.g. 10 -> 110 (binary) -> 2 (first 1 bit from the right side)
+- get rightmost set bit: `n & (-n)`, e.g. `10` -> `110` (binary) -> `2` (first 1 bit from the right side)
