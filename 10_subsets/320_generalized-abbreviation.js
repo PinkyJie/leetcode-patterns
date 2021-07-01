@@ -7,7 +7,7 @@
  * example of "ab" which has four substrings: "", "a", "b", and "ab". After replacing
  * these substrings in the actual word by the count of characters we get all the
  * generalized abbreviations: "2", "a1", "1b", and "ab".
- * https://leetcode.com/problems/generalized-abbreviation/  (subscription)
+ * https://leetcode.com/problems/generalized-abbreviation/ (subscription)
  *
  * Example 1:
  * Input: "BAT"
@@ -64,7 +64,11 @@ function _backtrack(str, curIndex, curList, result) {
 }
 
 function _isNumber(char) {
-  return char >= '0' && char <= '9';
+  /**
+   * `char > '0' && char < '9'` won't work because if `word.length >= 10`, then
+   * `char` could be a double digit string.
+   */
+  return !Number.isNaN(parseInt(char));
 }
 
 // Test

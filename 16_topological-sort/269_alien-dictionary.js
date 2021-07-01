@@ -71,6 +71,9 @@ function findAlienDictionaryOrder(words) {
   // O(E * m) E: the length of `words` array, m: the average length of each word, m <= V
   for (let i = 0; i < words.length - 1; i++) {
     const order = _getOrderFromTwoWords(words[i], words[i + 1]);
+    if (order === -1) {
+      return '';
+    }
     if (order && !charOrderMap[`${order[0]}${order[1]}`]) {
       charOrderMap[`${order[0]}${order[1]}`] = true;
       graph[order[0]].push(order[1]);
@@ -128,8 +131,14 @@ function _getOrderFromTwoWords(word1, word2) {
     j++;
   }
   /**
+   * Invalid input data, e.g. ["abc", "ab"], "abc" should be "smaller" than "ab".
+   */
+  if (i < word1.length) {
+    return -1;
+  }
+  /**
    * It can return null if no order can be derived from the above comparison,
-   * e.g "abc" and "abcd", we have no clue for any order.
+   * e.g. "abc" and "abcd", we have no clue for any order.
    */
   return null;
 }

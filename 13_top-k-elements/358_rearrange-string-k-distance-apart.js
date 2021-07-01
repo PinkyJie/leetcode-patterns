@@ -58,10 +58,11 @@ function rearrangeStringWithKDistanceApart(str, k) {
      * e.g. `preChars = [a, b, c]` and `k = 3`, at this moment we can push
      * "a" back to the heap, because even "a" gets pop() immediately at next loop,
      * in the result array it will be separated by the previous "a" by "bc".
-     * Note: k = 3 means the same character needs to be separated by other
+     * Note1: k = 3 means the same character needs to be separated by other
      * 2 (e.g. k - 1) characters.
+     * Note2: k can be 0, hence `>= k` here.
      */
-    if (preChars.length === k) {
+    if (preChars.length >= k) {
       const preChar = preChars.shift();
       if (freqMap[preChar] > 0) {
         maxHeap.push(preChar);
