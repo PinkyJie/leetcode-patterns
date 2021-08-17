@@ -33,7 +33,7 @@ function diameterOfBinaryTree(root) {
    * return an object like this, or use a global variable here out of the
    * recursion.
    */
-  return _traverse(root).maxDiameter;
+  return _traverse(root).maxPathLength;
 }
 
 function _traverse(node) {
